@@ -1,9 +1,48 @@
-$primary-color: rgb(201, 123, 123);
+$primary-color: #171a1f;
+$textColor: rgb(223, 212, 154);
+// $primary-color: rgb(201, 123, 123);
 body {
   background-color: $primary-color;
+  
 }
+
+.headerbckgrnd{
+  background-color: #171a1f !important;
+  // color:  rgb(223, 212, 154) !important;
+}
+
+.text-align{
+  text-align: center;
+}
+
+.headerbckgrnd a{
+  color:  rgb(223, 212, 154) !important;
+}
+
+.ivory {
+  color: $textColor !important;
+}
+
+.justify-content {
+  justify-content: center;
+}
+
+// .btn-loginform {
+//   max-width: 70%;
+// }
 
 .header {
     background-color: rgb(39, 39, 39);
     color:blanchedalmond;
+}
+
+.text-align {
+  text-align: center;
+}
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
+    background-color:#171a1f;
+    padding: 20px;
 }

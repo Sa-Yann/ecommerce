@@ -43,24 +43,6 @@ module.exports = class Log_in {
                     }
                 });
             }
-            /*
-            if (result === true) {
-                request.flash('notify', 'Welcome home, Vous êtes bien connecté');
-                response.redirect('/');
-                // response.render('/', {
-                //     // error: `Cette adresse email existe déjà`,
-                //     // form: entity_login,
-
-                // });
-            } else {
-                // sinon on tente de le créer
-
-                response.render('register/log_in', {
-                    error: `Vous avez du faire une erreur d'identifiant ou de mot de passe`,
-                    formLogIn: entity_login
-                });
-            };
-            */
         });
 
     };

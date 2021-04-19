@@ -12,9 +12,9 @@ html(lang="en")
         block css
         //- title Document
     body 
-        .container
+        .container.headerbckgrnd
                 header
-                    nav.navbar.navbar-light.bg-light.sticky-top.navbar-expand-lg
+                    nav.navbar.navbar-light.bg-light.sticky-top.navbar-expand-lg.headerbckgrnd.ivory 
                         a.navbar-brand(href="/")
                             img(src="/images/real_estate_logoblue.png" width="200" height="90" class="d-inline-block align-top" alt="Logo #{websiteName}")
     
@@ -22,7 +22,7 @@ html(lang="en")
                             ul.navbar-nav.mr-auto.mt-2.mt-lg-0
                                 li.nav-item.active
                                     a.nav-link(href='/') Acceuil
-                                    //- c est le session.user de request.session.user=userBdAllDatas de  determiner dans le log_in.js
+                                //- c est le session.user de request.session.user=userBdAllDatas de  determiner dans le log_in.js
                                 if session.user 
                                     li.nav-item.active
                                         a.nav-link(href='/log_out') Se déconnecter                       

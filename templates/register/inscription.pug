@@ -1,51 +1,52 @@
 extends ../layout.pug
 block content
     .container
-        h1 Inscription 
+        h1.ivory.col-4.col-centered.text-align Inscription 
         //- if error..permet d'afficher le message de mail déja enregistré ds le cas de repetition de la valeur email du form
         if error 
             .alert.alert-danger= error
-        form(action='/inscription' method="post")
-            .input-group.mb-3
-                span.input-group-prepend
-                    span.input-group-text.d-none.d-lg-block 
-                        i.fa.fa-envelope 
-                input(type="email" class="form-control" placeholder="Email" name="email" value=formInscription.email)     
-                
-            .input-group.mb-3
-                .input-group-prepend
-                    .input-group-text.d-none.d-lg-block 
-                        i.fa.fa-lock
-                input(type="password" class="form-control" placeholder="Mot de passe" name="password")
-    
-            hr
-    
-            .input-group.mb-3
-                .input-group-prepend
-                    .input-group-text.d-none.d-lg-block 
-                        i.fa.fa-restroom
-                select(class="form-control" placeholder="Civilité" name="civility")
-                    option(value="1") Monsieur
-                    option(value="2") Madame
-    
-            .input-group.mb-3
-                .input-group-prepend
-                    .input-group-text.d-none.d-lg-block
-                        i.fa.fa-user
-                input(type="text" class="form-control" placeholder="Nom" name="lastanme" value=formInscription.lastname)
-    
-            .input-group.mb-3
-                .input-group-prepend
-                    .input-group-text.d-none.d-lg-block 
-                        i.fa.fa-user
-                input(type="text" class="form-control" placeholder="Prénom" name="firstanme" value=formInscription.firstname)
-    
-            .input-group.mb-3
-                .input-group-prepend
-                    .input-group-text.d-none.d-lg-block
-                        i.fa.fa-phone
-                input(type="phone" class="form-control" placeholder="Téléphone" name="phone" value=formInscription.phone) 
-    
-            .row.justify-content-center
-                .col-2
-                    button.btn.btn-primary(type="submit") Enregistrer
+        .col-4.col-centered
+            form(action='/inscription' method="post")
+                .input-group.mb-3
+                    span.input-group-prepend
+                        span.input-group-text.d-none.d-lg-block 
+                            i.fa.fa-envelope 
+                    input(type="email" class="form-control" placeholder="Email" name="email" value=formInscription.email)     
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block 
+                            i.fa.fa-lock
+                    input(type="password" class="form-control" placeholder="Mot de passe" name="password")
+
+                hr
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block 
+                            i.fa.fa-restroom
+                    select(class="form-control" placeholder="Civilité" name="civility")
+                        option(value="1") Monsieur
+                        option(value="2") Madame
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block
+                            i.fa.fa-user
+                    input(type="text" class="form-control" placeholder="Nom" name="lastanme" value=formInscription.lastname)
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block 
+                            i.fa.fa-user
+                    input(type="text" class="form-control" placeholder="Prénom" name="firstanme" value=formInscription.firstname)
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block
+                            i.fa.fa-phone
+                    input(type="phone" class="form-control" placeholder="Téléphone" name="phone" value=formInscription.phone) 
+
+                .row
+                    .col-4.col-centered 
+                        button.btn.btn-secondary.mb3(type="submit") Enregistrer

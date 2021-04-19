@@ -1,25 +1,26 @@
 extends ../layout.pug
 block content
-    .container
+    .container.justify-content
         if error 
                 .alert.alert-danger= error
-        h1 Identifiez Vous
+        h1.ivory.col-4.col-centered.text-align Identifiez Vous
         //- if error..permet d'afficher le message de mail déja enregistré ds le cas de repetition de la valeur email du form
         //- if error 
         //-     .alert.alert-danger= error
-        form(action='/log_in' method="post")
-            .input-group.mb-3
-                span.input-group-prepend
-                    span.input-group-text.d-none.d-lg-block 
-                        i.fa.fa-envelope 
-                input(type="email" class="form-control" placeholder="Email" name="email" value= formLogIn.email)     
-     
-            .input-group.mb-3
-                .input-group-prepend
-                    .input-group-text.d-none.d-lg-block 
-                        i.fa.fa-lock
-                input(type="password" class="form-control" placeholder="Mot de passe" name="password")
-            hr
-            .row.justify-content-center
-                .col-2
-                    button.btn.btn-primary(type="submit") Se Connecter
+        .col-4.col-centered
+            form(action='/log_in' method="post")
+                .input-group.mb-3
+                    span.input-group-prepend
+                        span.input-group-text.d-none.d-lg-block 
+                            i.fa.fa-envelope 
+                    input(type="email" class="form-control" placeholder="Email" name="email" value= formLogIn.email)     
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block 
+                            i.fa.fa-lock
+                    input(type="password" class="form-control" placeholder="Mot de passe" name="password")
+                hr
+                .row
+                    .col-4.col-centered
+                        button.btn.btn-secondary.btn-loginform.mb3(type="submit") Se Connecter

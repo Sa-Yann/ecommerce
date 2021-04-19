@@ -20,19 +20,19 @@ app.use(session({
 // bien mettre entre guillemets, tous les paramettres de connexion récupérés via le consol log 
 // dans Users.js 
 //--------------------------------------------------------------------
-app.use((req, res, next) => {
-    req.session.user = {
-        _id: "60794aba0de09233f2e9163c",
-        email: 'test1021@gmail.com',
-        password: '$2a$10$VUz6hMKQfgbphQ/JMXWu/eCZmkioPywxzjZ68nxLwPoruZxpy9ty6',
-        civility: '1',
-        firstname: 'Yann',
-        lastname: 'Le',
-        phone: '0123456782',
-        date: '2021 - 04 - 16T08: 28: 42.024Z'
-    };
-    next()
-})
+// app.use((req, res, next) => {
+//     req.session.user = {
+//         _id: "60794aba0de09233f2e9163c",
+//         email: 'test1021@gmail.com',
+//         password: '$2a$10$VUz6hMKQfgbphQ/JMXWu/eCZmkioPywxzjZ68nxLwPoruZxpy9ty6',
+//         civility: '1',
+//         firstname: 'Yann',
+//         lastname: 'Le',
+//         phone: '0123456782',
+//         date: '2021 - 04 - 16T08: 28: 42.024Z'
+//     };
+//     next()
+// })
 
 
 //--------------------------------------------------------------------
