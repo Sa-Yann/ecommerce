@@ -37,4 +37,15 @@ module.exports = (app) => {
         let admin_page = require('../src/controllers/Admin_page.js');
         (new admin_page()).print(req, res);
     });
+    app.get('/admin_page/create_seller', (req, res) => {
+        let SellersClass = require('../src/controllers/AdminSeller.js');
+        (new SellersClass()).printFormAdmin(req, res);
+    });
+    app.post('/admin_page/create_seller', (req, res) => {
+        // res.send("Hello World");
+        let SellersClass = require('../src/controllers/AdminSeller.js');
+        // On utilise processForm pour indiquer qu on app.post 
+        // les données collecter dans la données collectés via la function processForn()
+        (new SellersClass()).processFormAdmin(req, res);
+    });
 };

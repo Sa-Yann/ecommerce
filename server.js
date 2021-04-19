@@ -14,6 +14,26 @@ app.use(session({
     cookie: { maxAge: 3600000 }
 }));
 
+///--------------------------------------------------------------------
+// Ajout d'une commande qui spécifie un utilisateur constant pour
+// ne pas avoir a se reconnecter tt le temps peendant la construction de l'app
+// bien mettre entre guillemets, tous les paramettres de connexion récupérés via le consol log 
+// dans Users.js 
+//--------------------------------------------------------------------
+app.use((req, res, next) => {
+    req.session.user = {
+        _id: "60794aba0de09233f2e9163c",
+        email: 'test1021@gmail.com',
+        password: '$2a$10$VUz6hMKQfgbphQ/JMXWu/eCZmkioPywxzjZ68nxLwPoruZxpy9ty6',
+        civility: '1',
+        firstname: 'Yann',
+        lastname: 'Le',
+        phone: '0123456782',
+        date: '2021 - 04 - 16T08: 28: 42.024Z'
+    };
+    next()
+})
+
 
 //--------------------------------------------------------------------
 //      Ajout du midlleware express res.locals.session
@@ -22,6 +42,7 @@ app.use((req, res, next) => {
     // pug récupere res.local.session de req.session qui a été defini 
     // ds le controlleur log_in
     res.locals.session = req.session;
+    res.locals.route = req._parsedUrl.pathname;
     next();
 });
 
