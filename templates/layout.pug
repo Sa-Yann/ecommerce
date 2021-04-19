@@ -21,13 +21,25 @@ html(lang="en")
                         #navbarToggler.collapse.navbar-collapse
                             ul.navbar-nav.mr-auto.mt-2.mt-lg-0
                                 li.nav-item.active
-                                    a.nav-link(href='/') Acheter
-                                li.nav-item.active
-                                    a.nav-link(href='/') Louer
-                                li.nav-item.active
-                                    a.nav-link(href='/') Gérer
-                                li.nav-item.active
-                                    a.nav-link(href='/') Vendre
+                                    a.nav-link(href='/') Acceuil
+                                    //- c est le session.user de request.session.user=userBdAllDatas de  determiner dans le log_in.js
+                                if session.user 
+                                    li.nav-item.active
+                                        a.nav-link(href='/log_out') Se déconnecter                       
+                                else
+                                    li.nav-item
+                                        a.nav-link(href='/inscription') Inscription
+                                    li.nav-item
+                                        a.nav-link(href='/log_in') Connexion
+                - var messages = getMessages()
+                       if messages.notify
+                           each msg in messages.notify
+                               .alert.alert-info= msg
+                       if messages.error
+                           each msg in messages.error
+                               .alert.alert-danger= msg
+
+                                
     block content
     block scripts
         script(src=process.env.BROWSER_REFRESH_URL)

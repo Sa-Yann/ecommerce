@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "style.css",
+	"sources": [
+		"../../build/css/style.scss"
+	],
+	"names": [],
+	"mappings": "AACA,AAAA,IAAI,AAAC,CACH,gBAAgB,CAFF,OAAkB,CAGjC"
+}
