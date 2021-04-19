@@ -33,19 +33,19 @@ module.exports = (app) => {
         // (new Log_out()).print(req, res);
         (new Log_out()).disconnect(req, res);
     });
-    app.get('/admin_page', (req, res) => {
-        let admin_page = require('../src/controllers/Admin_page.js');
-        (new admin_page()).print(req, res);
+    app.get('/dashboardView', (req, res) => {
+        let instenceDashboardClass = require('../src/controllers/Dashboard.js');
+        (new instenceDashboardClass()).print(req, res);
     });
-    app.get('/admin_page/create_seller', (req, res) => {
-        let SellersClass = require('../src/controllers/AdminSeller.js');
-        (new SellersClass()).printFormAdmin(req, res);
+    app.get('/dashboardView/create_seller', (req, res) => {
+        let instenceDeSellersClass = require('../src/controllers/RegisterHomes.js');
+        (new instenceDeSellersClass()).printFormAdmin(req, res);
     });
-    app.post('/admin_page/create_seller', (req, res) => {
+    app.post('/dashboardView/create_seller', (req, res) => {
         // res.send("Hello World");
-        let SellersClass = require('../src/controllers/AdminSeller.js');
-        // On utilise processForm pour indiquer qu on app.post 
+        let instenceDeAdminSellerClass = require('../src/controllers/RegisterHomes.js');
+        // On utilise processFormAdmin pour indiquer qu on app.post 
         // les données collecter dans la données collectés via la function processForn()
-        (new SellersClass()).processFormAdmin(req, res);
+        (new instenceDeAdminSellerClass()).processFormAdmin(req, res);
     });
 };

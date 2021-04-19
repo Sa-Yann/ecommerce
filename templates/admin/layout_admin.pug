@@ -35,23 +35,23 @@ html
         nav#sidebarMenu.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse
           ul.nav.flex-column
             li.nav-item
-              a.nav-link(class=(route == '/admin_page' ? 'active' : '' ), href='/admin')
+              a.nav-link(class=(route == '/dashboardView' ? 'active' : '' ), href='/dashboardView')
                   em.fa.fa-tachometer-alt &nbsp;
                   | Dashboard
             li.nav-item
-              a.nav-link(class=(route.indexOf('/admin_page/create_seller') != -1  ? 'active' : '' ), href='/admin_page/create_seller')
+              a.nav-link(class=(route.indexOf('/dashboardView/create_seller') != -1  ? 'active' : '' ), href='/dashboardView/create_seller')
                 em.fa.fa-home &nbsp;
                 | Biens
             li.nav-item
-              a.nav-link(class=(route.indexOf('/admin/contact') != -1 ? 'active' : '' ), href='/admin/contact')
+              a.nav-link(class=(route.indexOf('/dashboardView/contact') != -1 ? 'active' : '' ), href='/dashboardView/contact')
                 em.fa.fa-address-book &nbsp;
                 | Contacts
             li.nav-item
-              a.nav-link(class=(route.indexOf('/admin/user') != -1 ? 'active' : '' ), href='/admin/user')
+              a.nav-link(class=(route.indexOf('/dashboardView/user') != -1 ? 'active' : '' ), href='/dashboardView/user')
                 em.fa.fa-user &nbsp;
                 | Collaborateurs
             li.nav-item
-              a.nav-link(class=(route.indexOf('/admin/message') != -1 ? 'active' : '' ), href='/admin/message')
+              a.nav-link(class=(route.indexOf('/dashboardView/message') != -1 ? 'active' : '' ), href='/dashboardView/message')
                 em.fa.fa-envelope &nbsp;
                 | Messages
  

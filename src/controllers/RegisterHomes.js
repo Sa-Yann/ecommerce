@@ -6,11 +6,11 @@ module.exports = class AdminSeller {
             // response.render fait appel au fichier admin_page.pug
             // { formInfoNewHome: {} } stipule a la requete app.get que lle formulaire d'inscription
             // est remplie via les valeur de entity a qui il est attribue/associé dans  le code pug
-            response.render('admin/seller/form', { formInfoNewHome: {} });
+            response.render('admin/seller/registerHomesView', { formInfoNewHome: {} });
             return;
         }
         request.flash('error', `Vous devez être connecté pour accéder à l'administration.`);
-        response.redirect('/admin_page');
+        response.redirect('/dashboardView');
     }
 
     // Le controller reçoit les données du formulaire, il doit préparer les données pour les envoyer 
@@ -39,7 +39,7 @@ module.exports = class AdminSeller {
         repo.emailExists(entity.email).then((result) => {
             // si l'email existe deja dans la bdd
             if (result === true) {
-                response.render('admin/seller/form', {
+                response.render('admin/seller/registerHomesView', {
                     error: `Cette adresse email existe déjà`,
                     formInfoNewHome: entity,
                 });
@@ -56,10 +56,10 @@ module.exports = class AdminSeller {
                 repo.add(entity).then((user) => {
                     //request.flash('success','Vous etes bien inscris');
                     request.flash('notify', 'Votre Habitation à bien été créé.');
-                    response.redirect('/admin_page');
+                    response.redirect('/dashboardView');
                 }, (err) => {
                     // response.render('register/inscription', {
-                    response.render('admin/seller/form', {
+                    response.render('admin/seller/registerHomesView', {
                         error: `L'enregistrement en base de données a échoué`,
                         formInfoNewHome: entity
                     });
