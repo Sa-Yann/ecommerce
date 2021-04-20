@@ -58,7 +58,6 @@ module.exports = class AdminSeller {
                     request.flash('notify', 'Votre Habitation à bien été créé.');
                     response.redirect('/dashboardView');
                 }, (err) => {
-                    // response.render('register/inscription', {
                     response.render('admin/seller/registerHomesView', {
                         error: `L'enregistrement en base de données a échoué`,
                         formInfoNewHome: entity

@@ -48,4 +48,8 @@ module.exports = (app) => {
         // les données collecter dans la données collectés via la function processForn()
         (new instenceDeAdminSellerClass()).processFormAdmin(req, res);
     });
+    app.get('/list_homeView', (req, res) => {
+        let instenceHomeListClass = require('../src/controllers/Homes_list.js');
+        (new instenceHomeListClass()).print(req, res);
+    })
 };
