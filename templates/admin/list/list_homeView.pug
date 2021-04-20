@@ -1,5 +1,42 @@
 extends ../layout_admin.pug
 block content
     .container 
-        h1 list_homeView
+        //- h1 list_homeView  
+    block content
+        .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+            h1.h2 Liste des biens
+            .btn-toolbar.mb-2.mb-md-0
+                a.btn.btn-small.btn-primary(href="/dashboardView/create_seller") Ajouter un bien
+    hr
+    table.table
+        thead
+            tr
+                th.col-lg1 check 
+                th(scope="col-lg1") Nom 
+                th(scope="col-lg2") Prénom 
+                th(scope="col-lg3") Adresse
+                th(scope="col-lg3") email
+                th(scope="col-lg1") modifié
+                th(scope="col-lg1") delete
+            tbody
+                each value in allSellersinMyDbb
+                    tr
+                        //- td.form-check 
+                        //- input.form-check-input(type="checkbox" value="default" id="flexCheckDefault")
+                        td
+                            label.v-checkbox
+                            input(type="checkbox")
+                        td #{value.lastnameSeller}
+                        td #{value.firstName}
+                        td #{value.adress}
+                        td #{value.email}
+                        td
+                            a.btn.btn-float
+                                em.fa.fa-pencil-alt#pencilIcon &nbsp;
+                        td
+                            a.btn.btn-float
+                                em.fa.fa-trash-alt#deleteIcon &nbsp;
+
+
+
 

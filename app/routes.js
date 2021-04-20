@@ -50,6 +50,6 @@ module.exports = (app) => {
     });
     app.get('/list_homeView', (req, res) => {
         let instenceHomeListClass = require('../src/controllers/Homes_list.js');
-        (new instenceHomeListClass()).print(req, res);
+        (new instenceHomeListClass()).printTableGoodForSale(req, res);
     })
 };

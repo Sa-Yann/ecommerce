@@ -49,30 +49,18 @@ module.exports = class SellersClass {
             });
         });
     }
-
-    // On verifie que l email de l utilisateur a deja été inséré ou non
-    emailExists(email) {
+    // FONCTION DE RECUPERATION DE TOUTES LES DONNÉES DE CHAQUE SELLER DE BIENS
+    // UTILISÉE DANS LE CONTROLLEURS HOMELIST
+    getallSellersinMyDbb() {
         return new Promise((resolve, reject) => {
-            this.db.findOne({ email }, (err, user) => {
+            this.db.find({}, (err, allSellersinMyDbb) => {
                 // si pas d'erreur, email trouvé
-                if (!err && user !== null) {
-                    resolve(true);
+                if (!err) {
+                    resolve(allSellersinMyDbb);
                 }
                 resolve(false);
             })
         })
     }
-    // Recuperer toutes les données d'un utilisateurs après avoir trouvé son adress email
-    // log_in_Exists(email) {
-    //     return new Promise((resolve, reject) => {
-    //         this.db.findOne({ email }, (err, userQueLonChercheAllDatas) => {
-    //             // si pas d'erreur, email et password trouvé
-    //             if (!err && userQueLonChercheAllDatas !== null) {
-    //                 resolve(userQueLonChercheAllDatas);
-    //             }
-    //             resolve(false);
-    //         })
-    //     })
-    // }
 
 };

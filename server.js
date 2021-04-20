@@ -43,6 +43,7 @@ app.use((req, res, next) => {
     // ds le controlleur log_in
     res.locals.session = req.session;
     res.locals.route = req._parsedUrl.pathname;
+    // permet de voir l'url a partir de host:port(localhost://3000)req._parsedUrl.pathname
     console.log(res.locals.route);
     next();
 });
