@@ -29,6 +29,29 @@ module.exports = class HomeListClass {
         // }
     }
 
+    deleteHome(request, response) {
+        if (typeof request.session === 'undefined' || typeof request.session.user === 'undefined') {
+            request.flash('error', `Vous devez être connecté pour accéder à l'administration.`);
+            response.redirect('/connexion');
+            return;
+        }
+
+        if (request.params.id != undefined && request.params.id != '') {
+            let repo = new repoSellers();
+            repo.deleteOne({ _id: request.params.id }).then(() => {
+                request.flash('notify', 'Le bien a été supprimé.');
+                response.redirect('/list_homeView');
+            }, () => {
+                request.flash('error', 'La suppression du bien a échoué.');
+                response.redirect('/list_homeView');
+            });
+        }
+        else {
+            request.flash('error', 'Une erreur est survenue.');
+            response.redirect('/list_homeView');
+        }
+    };
+
 };
 
 

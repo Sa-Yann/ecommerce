@@ -37,11 +37,11 @@ module.exports = (app) => {
         let instenceDashboardClass = require('../src/controllers/Dashboard.js');
         (new instenceDashboardClass()).print(req, res);
     });
-    app.get('/dashboardView/create_seller', (req, res) => {
+    app.get('/dashboardView/registerHomesView', (req, res) => {
         let instenceDeSellersClass = require('../src/controllers/RegisterHomes.js');
         (new instenceDeSellersClass()).printFormAdmin(req, res);
     });
-    app.post('/dashboardView/create_seller', (req, res) => {
+    app.post('/dashboardView/registerHomesView', (req, res) => {
         // res.send("Hello World");
         let instenceDeAdminSellerClass = require('../src/controllers/RegisterHomes.js');
         // On utilise processFormAdmin pour indiquer qu on app.post 
@@ -51,5 +51,23 @@ module.exports = (app) => {
     app.get('/list_homeView', (req, res) => {
         let instenceHomeListClass = require('../src/controllers/Homes_list.js');
         (new instenceHomeListClass()).printTableGoodForSale(req, res);
-    })
+    });
+    // app.get('dashboardView/list_homeView/:id', (req, res) => {
+    //     let instenceDeClassInModifySellers = require('../src/controllers/ModifySeller.js');
+    //     (new instenceDeClassInModifySellers()).getOneSellerDatas(req, res);
+    // });
+    app.get('/dashboardView/deleteSeller/:id', (req, res) => {
+        let controllerHomeList = require('../src/controllers/Homes_list.js');
+        (new controllerHomeList()).deleteHome(req, res);
+    });
+
+    // let instenceDeHomeListClass = require('../src/controllers/Homes_list.js');
+    // (new instenceDeHomeListClass()).print(req, res);
+    // res.render('dashboardView/modifySellerView')
+    // });
+    // app.post('/dashboardView/modifySellerView/:id', (req, res) => {
+    //     let instenceDeSellersClass = require('../src/controllers/ModifySeller.js');
+    //     (new instenceDeSellersClass()).printFormForChanges(req, res);
+    //     // console.log('hello je suis la  en console')
+    // });
 };

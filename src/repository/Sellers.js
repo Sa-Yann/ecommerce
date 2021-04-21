@@ -63,4 +63,15 @@ module.exports = class SellersClass {
         })
     }
 
+    deleteOne(filter = {}) {
+        return new Promise((resolve, reject) => {
+            this.db.deleteOne(filter, function (err) {
+                console.log(err);
+                if (err) reject(err);
+                resolve();
+            });
+        });
+    };
+
+
 };
