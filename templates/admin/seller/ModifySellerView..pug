@@ -2,14 +2,11 @@ extends ../layout_admin.pug
 
 block content
     .container
-        h4 #{titleFormAdmin}
+        h4 Enregistrer un Bien
         //- if error..permet d'afficher le message de mail déja enregistré ds le cas de repetition de la valeur email du form
         if error 
             .alert.alert-danger= error
-        //- On retire la condition action pour permettre l update et non le rajout d une nouvelle table dans la liste  après update
-        //- form(action='/dashboardView/registerHomesView' method="post")
-        form(method="post")            
-            //- input(type="hidden" name="_id" value=formInfoNewHome._id)
+        form(action='/dashboardView/modifySellerView' method="post")
             .row 
                 .col-6
                     h4 Adresse du Bien
@@ -19,19 +16,19 @@ block content
                         .input-group-prepend
                             //- .input-group-text.d-none.d-lg-block
                                 //- i.fa.fa-user
-                        input(type="text" class="form-control" placeholder="Nom du vendeur" name="lastnameSeller" value=formInfoNewHome.lastnameSeller)
+                        input(type="text" class="form-control" placeholder="Nom du vendeur" name="lastnameSeller" value=formNewInfoSeller.lastnameSeller)
                     h6 Adresse
                     .input-group.mb-3
                         .input-group-prepend
                             //- .input-group-text.d-none.d-lg-block
                                 //- i.fa.fa-user
-                        input(type="text" class="form-control" placeholder="Votre Adresse" name="adress" value=formInfoNewHome.adress)
+                        input(type="text" class="form-control" placeholder="Votre Adresse" name="adress" value=formNewInfoSeller.adress)
 
                     .input-group.mb-3
                         .input-group-prepend
                             //- .input-group-text.d-none.d-lg-block
                                 //- i.fa.fa-user
-                        input(type="text" class="form-control" placeholder="Complément Adresse(facultatif" name="adress_more" value=formInfoNewHome.adress_more)
+                        input(type="text" class="form-control" placeholder="Complément Adresse(facultatif" name="adress_more" value=formNewInfoSeller.adress_more)
 
                     div.row
                         div.col-lg-6.pb-3
@@ -40,21 +37,21 @@ block content
                                 .input-group-prepend
                                     //- .input-group-text.d-none.d-lg-block
                                         //- i.fa.fa-user
-                                input(type="text" class="form-control" placeholder="Code Postal" name="postalCode" value=formInfoNewHome.postalCode)
+                                input(type="text" class="form-control" placeholder="Code Postal" name="postalCode" value=formNewInfoSeller.postalCode)
                         div.col-lg-6.pb-3
                             h6 Ville
                             .input-group.mb-3
                                 .input-group-prepend
                                     //- .input-group-text.d-none.d-lg-block
                                         //- i.fa.fa-user
-                                input(type="text" class="form-control" placeholder="Ville" name="city" value=formInfoNewHome.city)
+                                input(type="text" class="form-control" placeholder="Ville" name="city" value=formNewInfoSeller.city)
 
                     h6 Informations complémentaires
                     .input-group.mb-3
                         .input-group-prepend
                             //- .input-group-text.d-none.d-lg-block
                                 //- i.fa.fa-user
-                        textarea(rows="6" type="text" class="form-control" placeholder="Message" name="info_compl1" value=formInfoNewHome.info_compl1)
+                        textarea(rows="6" class="form-control" placeholder="Message" name="info_compl1" value=formNewInfoSeller.info_compl1)
 
 
                 .col-6
@@ -66,21 +63,20 @@ block content
                         .input-group-prepend
                             .input-group-text.d-none.d-lg-block
                                 i.fa.fa-user
-                        input(type="text" class="form-control" placeholder="Nom" name="lastname" value=formInfoNewHome.lastname)
-            
+                        input(type="text" class="form-control" placeholder="Nom" name="lastanme" value=formNewInfoSeller.lastname)
 
                     h6 Prénom
                     .input-group.mb-3
                         .input-group-prepend
                             .input-group-text.d-none.d-lg-block 
                                 i.fa.fa-user
-                        input(type="text" class="form-control" placeholder="Prénom" name="firstname" value=formInfoNewHome.firstname)
+                        input(type="text" class="form-control" placeholder="Prénom" name="firstanme" value=formNewInfoSeller.firstname)
                     
                     .input-group.mb-3
                         .input-group-prepend
                             .input-group-text.d-none.d-lg-block 
                                 i.fa.fa-restroom
-                        select(class="custom-select" placeholder="Civilité" name="civility" value=formInfoNewHome.civility)
+                        select(class="custom-select" placeholder="Civilité" name="civility" value=formNewInfoSeller.civility)
                             //- Comprendre pourquoi l'erreur en base de donné..type d ereponse a checker
                             //- <option selected></option>
                             option(value="1") Monsieur
@@ -91,32 +87,32 @@ block content
                         span.input-group-prepend
                             span.input-group-text.d-none.d-lg-block 
                                 i.fa.fa-envelope 
-                        //- Attention a bien stipuler dans le Admin-page.js l'existence de l objet:formInfoNewHome
-                        input(type="email" class="form-control" placeholder="Email" name="email" value=formInfoNewHome.email)     
+                        //- Attention a bien stipuler dans le Admin-page.js l'existence de l objet:formNewInfoSeller
+                        input(type="email" class="form-control" placeholder="Email" name="email" value=formNewInfoSeller.email)     
                     
                     h6 Mobile
                     .input-group.mb-3
                         .input-group-prepend
                             .input-group-text.d-none.d-lg-block
                                 i.fa.fa-phone
-                        input(type="phone" class="form-control" placeholder="Mobile" name="mobil" value=formInfoNewHome.mobil) 
+                        input(type="phone" class="form-control" placeholder="Mobile" name="mobil" value=formNewInfoSeller.mobil) 
                     
                     h6 Phone
                     .input-group.mb-3
                         .input-group-prepend
                             .input-group-text.d-none.d-lg-block
                                 i.fa.fa-phone
-                        input(type="phone" class="form-control" placeholder="Téléphone" name="phone" value=formInfoNewHome.phone) 
+                        input(type="phone" class="form-control" placeholder="Téléphone" name="phone" value=formNewInfoSeller.phone) 
 
                     h6 Informations complémentaires
                     .input-group.mb-3       
                         .input-group-prepend
                     //- .input-group-text.d-none.d-lg-block
                     //- i.fa.fa-user
-                    textarea(rows="5" type="text" class="form-control" placeholder="Message" name="info_compl2" value=formInfoNewHome.info_compl2)
+                    textarea(rows="5" class="form-control" placeholder="Message" name="info_compl2" value=formNewInfoSeller.info_compl2)
                 hr
                 br
                 hr
                 .row.justify-content-center
                     .col-2
-                        button.btn.btn-primary(type="submit") #{saveButtonText}
+                        button.btn.btn-primary(type="submit") Sauvegarder vos Modificatios

@@ -52,14 +52,23 @@ module.exports = (app) => {
         let instenceHomeListClass = require('../src/controllers/Homes_list.js');
         (new instenceHomeListClass()).printTableGoodForSale(req, res);
     });
-    // app.get('dashboardView/list_homeView/:id', (req, res) => {
-    //     let instenceDeClassInModifySellers = require('../src/controllers/ModifySeller.js');
-    //     (new instenceDeClassInModifySellers()).getOneSellerDatas(req, res);
-    // });
+    app.get('/dashboardView/edit/:id', (req, res) => {
+        console.log(`j suis passé par la route app.get qui utilise  printFormAdminEdit du controlleurs registeurHomes`)
+        let controllerRegisterHomes = require('../src/controllers/RegisterHomes.js');
+        (new controllerRegisterHomes()).printFormAdminEdit(req, res);
+        // () => { console.log('test route') };
+    });
+    app.post('/dashboardView/edit/:id', (req, res) => {
+        console.log(`j suis passé par la route app.get qui utilise  printFormAdminEdit du controlleurs registeurHomes`)
+        let controllerRegisterHomes = require('../src/controllers/RegisterHomes.js');
+        (new controllerRegisterHomes()).processFormAdmin(req, res);
+        // () => { console.log('test route') };
+    });
     app.get('/dashboardView/deleteSeller/:id', (req, res) => {
         let controllerHomeList = require('../src/controllers/Homes_list.js');
         (new controllerHomeList()).deleteHome(req, res);
     });
+
 
     // let instenceDeHomeListClass = require('../src/controllers/Homes_list.js');
     // (new instenceDeHomeListClass()).print(req, res);

@@ -13,15 +13,13 @@ const SellerSchema = mongoose.Schema({
     postalCode: { type: String },
     city: { type: String },
     info_compl1: { type: String },
-    email: { type: String },
     firstname: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
     lastname: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
     civility: { type: String, match: /^[1-2]{1}$/ },
-    firstname: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
-    lastname: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
+    email: { type: String },
     mobil: { type: String, match: /^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/ },
     phone: { type: String, match: /^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/ },
-    info_compl1: { type: String },
+    info_compl2: { type: String },
 },
     // The versionKey is a property set on each document when first created by Mongoose. 
     // This keys value contains the internal revision of the document. The name of this document property 
@@ -56,6 +54,8 @@ module.exports = class SellersClass {
             this.db.find({}, (err, allSellersinMyDbb) => {
                 // si pas d'erreur, email trouvé
                 if (!err) {
+                    // console.log(allSellersinMyDbb)
+                    // console.log(`je suis ds Sellers ds getallSellersinMyDbb`)
                     resolve(allSellersinMyDbb);
                 }
                 resolve(false);
@@ -72,6 +72,38 @@ module.exports = class SellersClass {
             });
         });
     };
+
+
+    getSellerById(id) {
+        return new Promise((resolve, reject) => {
+            //  _id: id on cherche l'id quia pour valeur votre variable _id _id = id
+            this.db.findById(id, (err, thisSellersinMyDbb) => {
+
+                // si pas d'erreur, seller trouvé
+                if (!err && thisSellersinMyDbb !== null) {
+                    resolve(thisSellersinMyDbb);
+                }
+                reject();
+            })
+        })
+    }
+
+    UpdateSeller(id, entity) {
+        // findOneandUpdate() Updates a single document based on the filter and sort criteria.
+        return new Promise((resolve, reject) => {
+
+            //  _id: req.body._id on cherche l'id quia pour valeur votre variable _id _id = req.body._id
+            this.db.findOneAndUpdate({ _id: id }, entity, { new: true }, (err, thisSellersinMyDbb) => {
+
+                // si pas d'erreur, seller trouvé
+                if (!err && thisSellersinMyDbb !== null) {
+                    resolve(thisSellersinMyDbb);
+                }
+                reject();
+            })
+        })
+    }
+
 
 
 };

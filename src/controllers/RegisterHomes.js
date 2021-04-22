@@ -1,12 +1,17 @@
 let repoSellers = require('../repository/Sellers.js')
 
 module.exports = class AdminSeller {
+
     printFormAdmin(request, response) {
+
+
         if (typeof request.session.user !== 'undefined') {
             // response.render fait appel au fichier admin_page.pug
             // { formInfoNewHome: {} } stipule a la requete app.get que lle formulaire d'inscription
             // est remplie via les valeur de entity a qui il est attribue/associé dans  le code pug
-            response.render('admin/seller/registerHomesView', { formInfoNewHome: {} });
+            console.log(`test avant response`)
+            response.render('admin/seller/registerHomesView', { formInfoNewHome: {}, saveButtonText: `Sauvegarder`, titleFormAdmin: `Enregistrer un Bien` });
+            console.log(`test aprés response`)
             return;
         }
         request.flash('error', `Vous devez être connecté pour accéder à l'administration.`);
@@ -14,6 +19,92 @@ module.exports = class AdminSeller {
     }
 
 
+    // // // J'ai besoin d un app.get pour aller chercher les infos informations du serveur vers navuagateur
+    // getSellerFormText(request, response) {
+    //     console.log('je suis ds le controlleur au niveau de dans la méthode getSellerById')
+    //     if (typeof request.session === 'undefined' || typeof request.session.user === 'undefined') {
+    //         request.flash('error', `problème pour joindre la base de Donnée, réessayez`);
+    //         response.redirect('/list_homeView');
+    //         return;
+    //     }
+
+    //     if (request.params.id != undefined && request.params.id != '') {
+    //         let repo = new repoSellers();
+    //         repo.getSellerById({ _id: request.params.id }).then(() => {
+    //             console.log(_id);
+    //             console.log('je suis ds le controlleur au niveau de epo.getSellerById')
+    //             request.flash('notify', `Bienvenue Dans la zone d'update de vos informatioins.`);
+    //             response.render('/registerHomesView');
+    //         }, () => {
+    //             request.flash('error', 'La suppression du bien a échoué.');
+    //             response.redirect('/list_homeView');
+    //         });
+    //     }
+    //     else {
+    //         request.flash('error', 'Une erreur est survenue.');
+    //         response.redirect('/list_homeView');
+    //     }
+    // };
+
+
+
+
+    printFormAdminEdit(request, response, next) {
+
+        // getSellerFormText(request, response)
+        if (typeof request.session.user !== 'undefined') {
+            if (typeof request.params.id !== "undefined") {
+                // La méthode then() renvoie un objet Promise.Elle peut prendre jusqu'à deux arguments 
+                // qui sont deux fonctions callback à utiliser en cas de complétion ou d'échec de la Promise.
+                // const promise1 = new Promise((resolve, reject) => {
+                //     resolve('Success!');
+                // });
+
+                // promise1.then((value) => {
+                //     console.log(value);
+                //     // expected output: "Success!"
+                // });
+                console.log('je suis ds le if qui gere ma methode getById qui est dans le if de printFormAdminEditMethode')
+                let promise = (new repoSellers).getSellerById(request.params.id);
+                promise.then((formContent) => {
+                    // formContent est la réposne de getSellerById
+                    response.render('admin/seller/registerHomesView',
+                        {
+                            formInfoNewHome: formContent,
+                            saveButtonText: `Sauvegarder Vos modifications`,
+                            titleFormAdmin: `Modifier les infos d'un Bien`
+                        }
+                    )
+                },
+                    // sinon
+                    () => {
+                        request.flash('error', `nous n'avons pas trouver votre bien dans la Base de donnée`);
+                        response.redirect('/list_homeView');
+                    });
+            } else {
+                // sinon
+                response.render('admin/seller/registerHomesView', {
+                    formInfoNewHome: {},
+                    saveButtonText: `Sauvegarder Vos modifications`,
+                    titleFormAdmin: `Modifier les infos d'un Bien`
+                });
+            }
+            // response.render fait appel au fichier admin_page.pug
+            // { formInfoNewHome: {} } stipule a la requete app.get que lle formulaire d'inscription
+            // est remplie via les valeur de entity a qui il est attribue/associé dans  le code pug        
+            return;
+        }
+        request.flash('error', `Vous devez être connecté pour accéder à l'administration.`);
+        response.redirect('/dashboardView');
+    }
+
+
+    getOneSellerDatas(request, response) {
+        request = new repoSellers();
+        console.log(request);
+        return;
+        // console.log('la fonction getOneSellerDatas dans RegisterHome.js');
+    }
 
     // Le controller reçoit les données du formulaire, il doit préparer les données pour les envoyer 
     // au repository qui se contentera de les enregistrer dans la BDD.
@@ -26,9 +117,8 @@ module.exports = class AdminSeller {
             adress_more: request.body.adress_more || '',
             postalCode: request.body.postalCode || '',
             city: request.body.city || '',
-            infocompl1: request.body.infocompl1 || '',
+            info_compl1: request.body.info_compl1 || '',
             firstname: request.body.firstname || '',
-            lastname: request.body.lastname || '',
             civility: request.body.civility || '',
             email: request.body.email || '',
             mobil: request.body.mobil || '',
@@ -36,24 +126,40 @@ module.exports = class AdminSeller {
             info_compl2: request.body.info_compl2 || '',
         };
 
+        // METHODE ADD SANS POSSIBILITE D UPDATE
+        // let repo = new repoSellers();
+
+        // // sinon on tente d'inserer les données dans la BBDD
+        // repo.add(entity).then((user) => {
+        //     //request.flash('success','Vous etes bien inscris');
+        //     request.flash('notify', 'Votre Habitation à bien été créé.');
+        //     response.redirect('/dashboardView');
+        // }, (err) => {
+        //     response.render('admin/seller/registerHomesView', {
+        //         error: `L'enregistrement en base de données a échoué`,
+        //         formInfoNewHome: entity
+        //     });
+        // });
+
 
         let repo = new repoSellers();
+        let promise;
+        if (typeof request.params.id !== "undefined") {
+            console.log(request.params.id)
+            promise = repo.UpdateSeller(request.params.id, entity)
 
-        // sinon on tente d'inserer les données dans la BBDD
-        repo.add(entity).then((user) => {
-            //request.flash('success','Vous etes bien inscris');
-            request.flash('notify', 'Votre Habitation à bien été créé.');
-            response.redirect('/dashboardView');
-        }, (err) => {
+        } else {
+            promise = repo.add(entity)
+        };
+        promise.then(() => {
+            request.flash('notify', `Vous venez d'updater votre Fiche Client.`);
+            response.redirect('/list_homeView');
+        }), () => {
             response.render('admin/seller/registerHomesView', {
                 error: `L'enregistrement en base de données a échoué`,
                 formInfoNewHome: entity
             });
-        });
-
-
-
-
+        }
 
     };
 };
