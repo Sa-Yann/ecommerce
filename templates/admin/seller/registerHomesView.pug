@@ -1,7 +1,7 @@
 extends ../layout_admin.pug
 
 block content
-    .container
+    .container.containerForm
         h4 #{titleFormAdmin}
         //- if error..permet d'afficher le message de mail déja enregistré ds le cas de repetition de la valeur email du form
         if error 
@@ -120,3 +120,45 @@ block content
                 .row.justify-content-center
                     .col-2
                         button.btn.btn-primary(type="submit") #{saveButtonText}
+            div.row
+                .col12 
+                    div.col-lg-6.pb-2
+                        h6 Titrez Votre Annonce
+                        .input-group.mb-4
+                            .input-group-prepend
+                                //- .input-group-text.d-none.d-lg-block
+                                    //- i.fa.fa-user
+                            input(type="text" class="form-control" placeholder=`Titre de Description` name="titreDescription" value=formInfoNewHome.titreDescription)
+                    div.col-lg-6.pb-2
+                        h6 Prix de vente
+                        .input-group.mb-2
+                            .input-group-prepend
+                                //- .input-group-text.d-none.d-lg-block
+                                    //- i.fa.fa-user
+                            input(type="text" class="form-control" placeholder="Prix de Vente" name="priceHome" value=formInfoNewHome.priceHome)
+                    div.col-lg-6.pb-2
+                        h6 Ville du Bien
+                        .input-group.mb-2
+                            .input-group-prepend
+                                //- .input-group-text.d-none.d-lg-block
+                                    //- i.fa.fa-user
+                            input(type="text" class="form-control" placeholder="Ville du Bien" name="cityDuBien" value=formInfoNewHome.cityDuBien) 
+                .row    
+                    div.col-lg-6.pb-2
+                        h6 Code Postal du Bien
+                        .input-group.mb-1
+                            .input-group-prepend
+                                //- .input-group-text.d-none.d-lg-block
+                                    //- i.fa.fa-user
+                            input(type="text" class="form-control" placeholder="CP" name="postalCodeDuBiens" value=formInfoNewHome.postalCodeDuBiens) 
+                    div.col-lg-6.pb-2
+                        h6 Particulier ou Professionel?
+                        .input-group.mb-3
+                            .input-group-prepend
+                                .input-group-text.d-none.d-lg-block 
+                                    i.fas.fa-user-circle
+                            select(class="custom-select" placeholder="Status" name="annonceurStatus:" value=formInfoNewHome.annonceurStatus)
+                                //- Comprendre pourquoi l'erreur en base de donné..type d ereponse a checker
+                                //- <option selected></option>
+                                option(value="1") Particulier
+                                option(value="2") Professionel

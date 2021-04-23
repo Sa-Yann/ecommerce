@@ -69,6 +69,17 @@ module.exports = (app) => {
         (new controllerHomeList()).deleteHome(req, res);
     });
 
+    app.get('/listOffers', (req, res) => {
+        let controllerHomeList = require('../src/controllers/Homes_list.js');
+        (new controllerHomeList()).printTableGoodForSaleUsersSide(req, res);
+    });
+    // Get Single article
+    app.get('/homeDescriptionDetails/:id', (req, res) => {
+        let controllerHomeList = require('../src/controllers/Homes_list.js');
+        (new controllerHomeList()).printSingleArticle(req, res);
+    });
+
+
 
     // let instenceDeHomeListClass = require('../src/controllers/Homes_list.js');
     // (new instenceDeHomeListClass()).print(req, res);

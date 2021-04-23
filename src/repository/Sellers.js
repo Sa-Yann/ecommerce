@@ -7,10 +7,11 @@ const mongoose = require('mongoose');
 
 
 const SellerSchema = mongoose.Schema({
-    lastnameSeller: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
+    // lastnameSeller: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
+    lastnameSeller: { type: String },
     adress: { type: String },
     adress_more: { type: String },
-    postalCode: { type: String },
+    postalCode: { type: Number },
     city: { type: String },
     info_compl1: { type: String },
     firstname: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
@@ -20,7 +21,20 @@ const SellerSchema = mongoose.Schema({
     mobil: { type: String, match: /^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/ },
     phone: { type: String, match: /^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/ },
     info_compl2: { type: String },
+    titreDescription: { type: String },
+    typedeVendeur: { type: String },
+    postalCodeDuBien: { type: String },
+    cityDuBien: { type: String },
+    annonceurStatus: { type: String, match: /^[1-2]{1}$/ },
 },
+    // {
+    //     titreDescription: { type: String },
+    //     typedeVendeur: { type: String },
+    //     postalCodeDuBien: { type: String },
+    //     cityDuBien: { type: String },
+    //     annonceurStatus: { type: String },
+
+    // },
     // The versionKey is a property set on each document when first created by Mongoose. 
     // This keys value contains the internal revision of the document. The name of this document property 
     // is configurable. The default is __v.

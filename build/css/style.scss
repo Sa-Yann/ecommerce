@@ -1,4 +1,5 @@
 $primary-color: #171a1f;
+$form-bckgrnd-color: rgb(223, 212, 154);
 $textColor: rgb(223, 212, 154);
 // $primary-color: rgb(201, 123, 123);
 body {
@@ -46,3 +47,45 @@ body {
     background-color:#171a1f;
     padding: 20px;
 }
+
+.colAnnonceCentered{
+    background-color: $form-bckgrnd-color !important;
+    color: rgb(39, 39, 39);
+    margin: 0 auto;
+    float: none;
+    background-color:#171a1f;
+    padding: 20px;
+    max-width: 700px;;
+}
+
+// .imgTumbialHouse {
+//     background-image: url("/public/images/Screenshot.png") !important;
+//     height: 100px;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     position: relative;
+//     border-radius: 8px;
+//   }
+
+.form-container, .rowallpageDescriptionHouse {
+    background-color: $form-bckgrnd-color !important;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: rgb(39, 39, 39);
+}
+
+.rowTableFront {
+  max-width: 700px !important;
+  margin: 10px !important;
+  border: solid black 1px;
+}
+
+.wordsVertCentered {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+

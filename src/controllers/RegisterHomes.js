@@ -124,7 +124,13 @@ module.exports = class AdminSeller {
             mobil: request.body.mobil || '',
             phone: request.body.phone || '',
             info_compl2: request.body.info_compl2 || '',
+            titreDescription: request.body.titreDescription || "",
+            typedeVendeur: request.body.typedeVendeur || "",
+            postalCodeDuBien: request.body.postalCodeDuBien || "",
+            cityDuBien: request.body.cityDuBien || "",
+            annonceurStatus: request.body.annonceurStatus || "",
         };
+
 
         // METHODE ADD SANS POSSIBILITE D UPDATE
         // let repo = new repoSellers();

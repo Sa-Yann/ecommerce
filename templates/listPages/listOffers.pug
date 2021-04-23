@@ -1,0 +1,65 @@
+extends ../layout.pug
+block content
+    .container
+        //- h1 list_homeView  
+    block content
+        .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom.form-container 
+            h1.h2 Listes de nos Bien à vendre
+            .btn-toolbar.mb-2.mb-md-0
+                a.btn.btn-small.btn-primary(href="/dashboardView/modifySellerView") Ajouter un bien
+        hr
+        each eachSellerinMyDbb in allSellersinMyDbb
+            .row_lg-12 
+                .col.colAnnonceCentered
+                    .col-lg-4.colPictureHome
+                    i.imgTumbialHouse(src="")
+                    .col-lg-8.colAllInfoAnnonce
+                        .row.rowUpInAnnonce
+                            .col-lg-7.colAllInfoAnnonce
+                                .row 
+                                    a.col-lg-7.titreDescription(href=(`/homeDescriptionDetails/${eachSellerinMyDbb.id}`)) #{eachSellerinMyDbb.titreDescription}
+                                .row
+                                    .postalCodeDuBiens #{eachSellerinMyDbb.postalCodeDuBiens}
+                            .col-lg-1.colImgHeart
+                                i.far.fa-heart
+                        .row.rowDown.Annonce
+                            .col-lg-7.colAllInfoAnnonce
+                                .row 
+                                    .cityDuBien #{eachSellerinMyDbb.cityDuBien}
+                                .row
+                                    .typedeVendeur #{eachSellerinMyDbb.typedeVendeur}
+                                .row
+                                    .postalCodeDuBiens #{eachSellerinMyDbb.postalCodeDuBiens}
+                            .col-lg-1.colImgHeart
+                                .annonceurStatus #{eachSellerinMyDbb.annonceurStatus}
+                    //- .row.rowTableFront
+                    //-     td #{eachSellerinMyDbb.typedeVendeur}
+                    //- .row
+                    //-     .cityDuBien #{eachSellerinMyDbb.cityDuBien}
+                    //- .row
+                    //-     .annonceurStatus #{eachSellerinMyDbb.annonceurStatus}  
+                    //-     //- td.form-check 
+                    //-     //- input.form-check-input(type="checkbox" allSellersinMyDbb="default" id="flexCheckDefault")
+                    //- tr.rowTableFront
+                    //-     td #{eachSellerinMyDbb.postalCodeDuBiens}
+                    //- tr.rowTableFront
+                    //-     td #{eachSellerinMyDbb.cityDuBien}
+                    //- tr.rowTableFront
+                    //-     td #{eachSellerinMyDbb.annonceurStatus}
+                    //-     td 
+                    //-         div.checkbox
+                    //-     td
+                    //-         i.far.fa-heart
+                    //-     //- td
+                    //-     //-     a.btn.btn-float(href="/dashboardView/edit/"+eachSellerinMyDbb._id)
+                    //-     //-         em.fa.fa-pencil-alt#pencilIcon &nbsp;
+                    //-     //- td
+                    //-     //-     a.btn.btn-float(href="/dashboardView/deleteSeller/"+eachSellerinMyDbb._id)
+                    //-     //-         em.fa.fa-trash-alt#deleteIcon &nbsp;
+                    //-         //- form(action="/dashboardView/modify_seller" + (`/${eachSellerinMyDbb.id}`) method="post")
+                    //-         //- form(action="/dashboardView/modifySellerView" method="post")
+                    //-         //-     button.btn-danger 
+                    //-         //-         //- a.btn.btn-float
+                    //-         //-         em.fa.fa-trash-alt#deleteIcon &nbsp;
+
+

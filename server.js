@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const config = require('./app/config');
+var slug = require('slug');
 
 
 //--------------------------------------------------------------------
@@ -58,6 +59,10 @@ app.use(flash());
 
 //--------------------------------------------------------------------
 //      Mise en place du moteur de template
+// we choose the folder templates that we create to host all the pug views
+// NB: WHEN A VIEW IS REQUESTED PUG AUTO GENRATE THE / FROM layout/VIEWTHATWEWONNA BE CALLED 
+// EXAMPLE response.render('listPages/singleOfferView'
+// NB : WHEN WE REDIRECT WE HAVE TO ADD THE / exemple : response.redirect('/listOffers')
 //--------------------------------------------------------------------
 app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'pug');
@@ -90,6 +95,8 @@ app.use(sassMiddleware({
 
 //--------------------------------------------------------------------
 //      Mise en place du répertoire static
+// C'est ici qu'on defini notre repertoire/dossier puclid comme dossier de reference pour 
+// les donnés css/images et js necessaisres pour les affichage et fonctionenement frontend
 //--------------------------------------------------------------------
 app.use(express.static(path.join(__dirname, 'public')));
 
