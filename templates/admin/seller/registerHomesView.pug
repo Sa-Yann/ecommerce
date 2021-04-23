@@ -54,8 +54,7 @@ block content
                         .input-group-prepend
                             //- .input-group-text.d-none.d-lg-block
                                 //- i.fa.fa-user
-                        textarea(rows="6" type="text" class="form-control" placeholder="Message" name="info_compl1" value=formInfoNewHome.info_compl1)
-
+                        textarea(rows="6" type="text" class="form-control" placeholder="Message" name="info_compl1")=formInfoNewHome.info_compl1
 
                 .col-6
                     h4 Contact du bien
@@ -80,11 +79,11 @@ block content
                         .input-group-prepend
                             .input-group-text.d-none.d-lg-block 
                                 i.fa.fa-restroom
-                        select(class="custom-select" placeholder="Civilité" name="civility" value=formInfoNewHome.civility)
+                        select(class="custom-select" placeholder="Civilité" name="civility")
                             //- Comprendre pourquoi l'erreur en base de donné..type d ereponse a checker
                             //- <option selected></option>
                             option(value="1") Monsieur
-                            option(value="2") Madame
+                            option(value="2" selected=formInfoNewHome.civility==2) Madame
 
                     h6 Email
                     .input-group.mb-3
@@ -113,7 +112,7 @@ block content
                         .input-group-prepend
                     //- .input-group-text.d-none.d-lg-block
                     //- i.fa.fa-user
-                    textarea(rows="5" type="text" class="form-control" placeholder="Message" name="info_compl2" value=formInfoNewHome.info_compl2)
+                    textarea(rows="5" type="text" class="form-control" placeholder="Message" name="info_compl2")=formInfoNewHome.info_compl2
                 hr
                 br
                 hr

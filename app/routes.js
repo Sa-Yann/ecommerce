@@ -4,6 +4,12 @@ module.exports = (app) => {
         let Home = require('../src/controllers/Home.js');
         (new Home()).print(req, res);
     });
+    // Get Single article
+    app.get('/homeDescriptionDetails/:slug', (req, res) => {
+        let Home = require('../src/controllers/Home.js');
+        (new Home()).printSingleArticle(req, res);
+    });
+
     app.get('/inscription', (req, res) => {
         // res.send("Hello World");
         let Inscription = require('../src/controllers/Inscription.js');
@@ -33,9 +39,16 @@ module.exports = (app) => {
         // (new Log_out()).print(req, res);
         (new Log_out()).disconnect(req, res);
     });
+
+
+    ///---- ADMIN
     app.get('/dashboardView', (req, res) => {
         let instenceDashboardClass = require('../src/controllers/Dashboard.js');
         (new instenceDashboardClass()).print(req, res);
+    });
+    app.get('/list_homeView', (req, res) => {
+        let instenceHomeListClass = require('../src/controllers/Homes_list.js');
+        (new instenceHomeListClass()).printTableGoodForSaleUsersSide(req, res);
     });
     app.get('/dashboardView/registerHomesView', (req, res) => {
         let instenceDeSellersClass = require('../src/controllers/RegisterHomes.js');
@@ -48,10 +61,7 @@ module.exports = (app) => {
         // les données collecter dans la données collectés via la function processForn()
         (new instenceDeAdminSellerClass()).processFormAdmin(req, res);
     });
-    app.get('/list_homeView', (req, res) => {
-        let instenceHomeListClass = require('../src/controllers/Homes_list.js');
-        (new instenceHomeListClass()).printTableGoodForSale(req, res);
-    });
+
     app.get('/dashboardView/edit/:id', (req, res) => {
         console.log(`j suis passé par la route app.get qui utilise  printFormAdminEdit du controlleurs registeurHomes`)
         let controllerRegisterHomes = require('../src/controllers/RegisterHomes.js');
@@ -68,26 +78,4 @@ module.exports = (app) => {
         let controllerHomeList = require('../src/controllers/Homes_list.js');
         (new controllerHomeList()).deleteHome(req, res);
     });
-
-    app.get('/listOffers', (req, res) => {
-        let controllerHomeList = require('../src/controllers/Homes_list.js');
-        (new controllerHomeList()).printTableGoodForSaleUsersSide(req, res);
-    });
-    // Get Single article
-    app.get('/homeDescriptionDetails/:id', (req, res) => {
-        let controllerHomeList = require('../src/controllers/Homes_list.js');
-        (new controllerHomeList()).printSingleArticle(req, res);
-    });
-
-
-
-    // let instenceDeHomeListClass = require('../src/controllers/Homes_list.js');
-    // (new instenceDeHomeListClass()).print(req, res);
-    // res.render('dashboardView/modifySellerView')
-    // });
-    // app.post('/dashboardView/modifySellerView/:id', (req, res) => {
-    //     let instenceDeSellersClass = require('../src/controllers/ModifySeller.js');
-    //     (new instenceDeSellersClass()).printFormForChanges(req, res);
-    //     // console.log('hello je suis la  en console')
-    // });
 };

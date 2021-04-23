@@ -33,30 +33,4 @@ module.exports = class UserHomeList {
     }
 
 
-
-    // J'ai besoin d un app.post pour renvoyer ses informations du serveur au navuagateur
-    getSellerFormText(request, response) {
-        if (typeof request.session === 'undefined' || typeof request.session.user === 'undefined') {
-            request.flash('error', `problème pour joindre la base de Donnée, réessayez`);
-            response.redirect('/ListOffers');
-            return;
-        }
-
-        if (request.params.id != undefined && request.params.id != '') {
-            let repo = new repoSellers();
-            repo.getSellerById({ _id: request.params.id }).then(() => {
-                console.log(_id);
-                console.log('je suis ds le controlleur au niveau de epo.getSellerById')
-                request.flash('notify', `Bienvenue Dans la zone d'update de vos informatioins.`);
-                response.render('/registerHomesView');
-            }, () => {
-                request.flash('error', 'La suppression du bien a échoué.');
-                response.redirect('/ListOffers');
-            });
-        }
-        else {
-            request.flash('error', 'Une erreur est survenue.');
-            response.redirect('/ListOffers');
-        }
-    };
 }

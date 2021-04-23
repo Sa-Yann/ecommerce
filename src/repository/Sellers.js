@@ -4,6 +4,9 @@ require('../../app/bdd_connect.js');
 
 // On rappelle/active notre methode mongoose qui sert a se connecter a la base de données
 const mongoose = require('mongoose');
+slug = require('mongoose-slug-updater');
+mongoose.plugin(slug);
+
 
 
 const SellerSchema = mongoose.Schema({
@@ -26,6 +29,8 @@ const SellerSchema = mongoose.Schema({
     postalCodeDuBien: { type: String },
     cityDuBien: { type: String },
     annonceurStatus: { type: String, match: /^[1-2]{1}$/ },
+    slug: { type: String, slug: ['postalCode', 'city'] }
+    // slug: 
 },
     // {
     //     titreDescription: { type: String },
@@ -88,10 +93,10 @@ module.exports = class SellersClass {
     };
 
 
-    getSellerById(id) {
+    getSellerById(slug) {
         return new Promise((resolve, reject) => {
             //  _id: id on cherche l'id quia pour valeur votre variable _id _id = id
-            this.db.findById(id, (err, thisSellersinMyDbb) => {
+            this.db.findById(slug, (err, thisSellersinMyDbb) => {
 
                 // si pas d'erreur, seller trouvé
                 if (!err && thisSellersinMyDbb !== null) {
