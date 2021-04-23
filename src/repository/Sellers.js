@@ -29,7 +29,7 @@ const SellerSchema = mongoose.Schema({
     postalCodeDuBien: { type: String },
     cityDuBien: { type: String },
     annonceurStatus: { type: String, match: /^[1-2]{1}$/ },
-    slug: { type: String, slug: ['postalCode', 'city'] }
+    slug: { type: String, slug: ['postalCode', 'city'], unique: true }
     // slug: 
 },
     // {
@@ -93,10 +93,25 @@ module.exports = class SellersClass {
     };
 
 
-    getSellerById(slug) {
+    getSellerById(id) {
         return new Promise((resolve, reject) => {
             //  _id: id on cherche l'id quia pour valeur votre variable _id _id = id
-            this.db.findById(slug, (err, thisSellersinMyDbb) => {
+            this.db.findById(id, (err, thisSellersinMyDbb) => {
+
+                // si pas d'erreur, seller trouvé
+                if (!err && thisSellersinMyDbb !== null) {
+                    resolve(thisSellersinMyDbb);
+                }
+                reject();
+            })
+        })
+    }
+
+
+    getSellerBySlug(slug) {
+        return new Promise((resolve, reject) => {
+            //  _id: id on cherche l'id quia pour valeur votre variable _id _id = id
+            this.db.findOne({ slug }, (err, thisSellersinMyDbb) => {
 
                 // si pas d'erreur, seller trouvé
                 if (!err && thisSellersinMyDbb !== null) {

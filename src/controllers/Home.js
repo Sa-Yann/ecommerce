@@ -12,12 +12,12 @@ module.exports = class Home {
 
     printSingleArticle(request, response) {
         if (typeof request.params.slug !== "undefined") {
-            let promise = (new repoSellers).getSellerById(request.params.slug);
+            let promise = (new repoSellers).getSellerBySlug(request.params.slug);
             promise.then((formContent) => {
                 // formContent est la réposne de getSellerById
                 response.render('listPages/singleOfferView', {
-                        formInfoNewHome: formContent
-                    }
+                    formInfoNewHome: formContent
+                }
                 );
             });
         } else {
