@@ -8,26 +8,57 @@ block content
             h1.h2 Listes de nos Bien à vendre
         hr
         each eachSellerinMyDbb in allSellersinMyDbb
-            .row_lg-12 
-                .col.colAnnonceCentered
-                    .col-lg-4.colPictureHome
-                    i.imgTumbialHouse(src="")
-                    .col-lg-8.colAllInfoAnnonce
-                        .row.rowUpInAnnonce
-                            .col-lg-7.colAllInfoAnnonce
-                                .row 
-                                    a.col-lg-7.titreDescription(href=(`/homeDescriptionDetails/${eachSellerinMyDbb.slug}`)) #{eachSellerinMyDbb.titreDescription}
-                                .row
-                                    .postalCodeDuBiens #{eachSellerinMyDbb.postalCodeDuBiens}
-                            .col-lg-1.colImgHeart
-                                i.far.fa-heart
-                        .row.rowDown.Annonce
-                            .col-lg-7.colAllInfoAnnonce
-                                .row 
-                                    .cityDuBien #{eachSellerinMyDbb.cityDuBien}
-                                .row
-                                    .typedeVendeur #{eachSellerinMyDbb.typedeVendeur}
-                                .row
-                                    .postalCodeDuBiens #{eachSellerinMyDbb.postalCodeDuBiens}
-                            .col-lg-1.colImgHeart
-                                .annonceurStatus #{eachSellerinMyDbb.annonceurStatus}
+            a(href=(`/homeDescriptionDetails/${eachSellerinMyDbb.slug}`)).rmvUnderline
+                .col-md-6.colAnnonceCentered
+                    .card.flex-row.box-shadow.h-md-250
+                        //- .col-4.box-shadow
+                        //- img.col-4.box-shadow.card-img-right.flex-auto.d-none.d-md-block(data-src='images/fa50588e56de380f7658bfd611d871ad504d9037.jpeg' alt='Thumbnail [200x200]' style='width: 200px; height: 200px;' src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_179085493f1%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_179085493f1%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.1953125%22%20y%3D%22130.7%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E' data-holder-rendered='true')
+                        img.col-4.box-shadow.card-img-right.flex-auto.d-none.d-md-block(src='images/fa50588e56de380f7658bfd611d871ad504d9037.jpeg' alt='Thumbnail [200x200]' style='width: 200px; height: 200px;')
+                        .col-8.box-shadow
+                            .card-body.d-flex.flex-column.align-items-start
+                                //- h3.mb-0
+                                //-     a.text-dark(href='#') Maison 9 pièces 227 m²
+                                //- br
+                                .mb-1.d-inline-block.mb-2.hoverGrey
+                                    strong #{eachSellerinMyDbb.titreDescription}
+                                .mb-1.d-inline-block.mb-2 
+                                    strong #{eachSellerinMyDbb.priceHome}€
+                                br
+                                br
+                                hr
+                                .mb-1.d-inline-block.mb-2 
+                                    p #{eachSellerinMyDbb.typedeVendeur}
+                                .row-md-12.flex-md-row
+                                    .col-md-12.text-muted #{eachSellerinMyDbb.cityDuBien}
+                                    .col-md-12.text-muted #{eachSellerinMyDbb.postalCodeDuBien}
+                                //- .mb-1.d-inline-block.mb-2 En savoir plus
+                        //- p.card-text.mb-auto
+                        //- | This is a wider card with supporting text below as a natural lead-in to additional content.
+                            
+                        
+                
+
+        //- each eachSellerinMyDbb in allSellersinMyDbb
+        //-     .row_lg-12 
+        //-         .col.colAnnonceCentered
+        //-             .col-lg-4.colPictureHome
+        //-             i.imgTumbialHouse(src="")
+        //-             .col-lg-8.colAllInfoAnnonce
+        //-                 .row.rowUpInAnnonce
+        //-                     .col-lg-7.colAllInfoAnnonce
+        //-                         .row 
+        //-                             a.col-lg-7.titreDescription(href=(`/homeDescriptionDetails/${eachSellerinMyDbb.slug}`)) #{eachSellerinMyDbb.titreDescription}
+        //-                         .row
+        //-                             .postalCodeDuBiens #{eachSellerinMyDbb.postalCodeDuBiens}
+        //-                     .col-lg-1.colImgHeart
+        //-                         i.far.fa-heart
+        //-                 .row.rowDown.Annonce
+        //-                     .col-lg-7.colAllInfoAnnonce
+        //-                         .row 
+        //-                             .cityDuBien #{eachSellerinMyDbb.cityDuBien}
+        //-                         .row
+        //-                             .typedeVendeur #{eachSellerinMyDbb.typedeVendeur}
+        //-                         .row
+        //-                             .postalCodeDuBiens #{eachSellerinMyDbb.postalCodeDuBiens}
+        //-                     .col-lg-1.colImgHeart
+        //-                         .annonceurStatus #{eachSellerinMyDbb.annonceurStatus}

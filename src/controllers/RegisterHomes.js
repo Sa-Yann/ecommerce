@@ -10,8 +10,11 @@ module.exports = class AdminSeller {
             // { formInfoNewHome: {} } stipule a la requete app.get que lle formulaire d'inscription
             // est remplie via les valeur de entity a qui il est attribue/associé dans  le code pug
             console.log(`test avant response`)
-            response.render('admin/seller/registerHomesView', { formInfoNewHome: {}, saveButtonText: `Sauvegarder`, titleFormAdmin: `Enregistrer un Bien` });
-            console.log(`test aprés response`)
+            response.render('admin/seller/registerHomesView', {
+                formInfoNewHome: {}, saveButtonText: `Sauvegarder`,
+                titleFormAdmin: `Enregistrer un Bien`
+            });
+            console.log(`test aprés response printFromAdmin`)
             return;
         }
         request.flash('error', `Vous devez être connecté pour accéder à l'administration.`);
@@ -118,6 +121,7 @@ module.exports = class AdminSeller {
             postalCode: request.body.postalCode || '',
             city: request.body.city || '',
             info_compl1: request.body.info_compl1 || '',
+            lastname: request.body.lastname || '',
             firstname: request.body.firstname || '',
             civility: request.body.civility || '',
             email: request.body.email || '',
@@ -125,6 +129,7 @@ module.exports = class AdminSeller {
             phone: request.body.phone || '',
             info_compl2: request.body.info_compl2 || '',
             titreDescription: request.body.titreDescription || "",
+            priceHome: request.body.priceHome || "",
             typedeVendeur: request.body.typedeVendeur || "",
             postalCodeDuBien: request.body.postalCodeDuBien || "",
             cityDuBien: request.body.cityDuBien || "",
@@ -158,7 +163,7 @@ module.exports = class AdminSeller {
             promise = repo.add(entity)
         };
         promise.then(() => {
-            request.flash('notify', `Vous venez d'updater votre Fiche Client.`);
+            request.flash('notify', `Vous venez d'enregistrer un nouveau bien dans votre base de donnée.`);
             response.redirect('/list_homeView');
         }), () => {
             response.render('admin/seller/registerHomesView', {

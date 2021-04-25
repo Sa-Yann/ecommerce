@@ -26,9 +26,11 @@ const SellerSchema = mongoose.Schema({
     info_compl2: { type: String },
     titreDescription: { type: String },
     typedeVendeur: { type: String },
-    postalCodeDuBien: { type: String },
+    postalCodeDuBien: { type: Number },
     cityDuBien: { type: String },
+    priceHome: { type: Number },
     annonceurStatus: { type: String, match: /^[1-2]{1}$/ },
+    // slug option unique: true pour avoir un slug unique pour chaque élement
     slug: { type: String, slug: ['postalCode', 'city'], unique: true }
     // slug: 
 },

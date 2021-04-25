@@ -4,7 +4,7 @@ slug = require('mongoose-slug-updater');
 module.exports = class HomeListClass {
 
 
-    
+
 
     printTableGoodForSaleUsersSide(request, response) {
         // ON CRÉE LA VARIABLE let repoSeller QUI EST UN OBJET / INSTENCE DE LA CLASS repossellers REQUIRES EN HAUT DE PAGE
@@ -34,7 +34,7 @@ module.exports = class HomeListClass {
             // on place allSellersinMyDbb qui est un un tableau comme variable a utilisé dans pug dans le rendu de la repose : { allSellersinMyDbb }
             // C'est ici qu on refere le chemin de la vue liste_homeview 
             // response.render('admin/list/list_homeView', { allSellersinMyDbb })
-            console.log(`check est ce que je suis dan sle terminal?`);
+            // console.log(`check est ce que je suis dan sle terminal?`);
             return;
 
         }, (err) => {

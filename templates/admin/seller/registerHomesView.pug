@@ -7,8 +7,8 @@ block content
         if error 
             .alert.alert-danger= error
         //- On retire la condition action pour permettre l update et non le rajout d une nouvelle table dans la liste  après update
-        //- form(action='/dashboardView/registerHomesView' method="post")
-        form(method="post")            
+        //- form(action='/dashboardView/registerHomesView' method="post") est devenu form(method="post") 
+        form(method="post" autocomplete="on")            
             //- input(type="hidden" name="_id" value=formInfoNewHome._id)
             .row 
                 .col-6
@@ -78,7 +78,7 @@ block content
                     .input-group.mb-3
                         .input-group-prepend
                             .input-group-text.d-none.d-lg-block 
-                                i.fa.fa-restroom
+                                i.fas.fa-user-circle
                         select(class="custom-select" placeholder="Civilité" name="civility")
                             //- Comprendre pourquoi l'erreur en base de donné..type d ereponse a checker
                             //- <option selected></option>
@@ -149,7 +149,7 @@ block content
                             .input-group-prepend
                                 //- .input-group-text.d-none.d-lg-block
                                     //- i.fa.fa-user
-                            input(type="text" class="form-control" placeholder="CP" name="postalCodeDuBiens" value=formInfoNewHome.postalCodeDuBiens) 
+                            input(type="text" class="form-control" placeholder="CP" name="postalCodeDuBien" value=formInfoNewHome.postalCodeDuBien) 
                     div.col-lg-6.pb-2
                         h6 Particulier ou Professionel?
                         .input-group.mb-3
@@ -160,4 +160,4 @@ block content
                                 //- Comprendre pourquoi l'erreur en base de donné..type d ereponse a checker
                                 //- <option selected></option>
                                 option(value="1") Particulier
-                                option(value="2") Professionel
+                                option(value="2" selected=formInfoNewHome.civility==2) Professionel

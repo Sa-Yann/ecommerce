@@ -10,6 +10,59 @@ block content
                         img.col-3(src="https://img.leboncoin.fr/api/v1/lbcpb1/images/12/19/12/121912104876575.jpg?rule=bo-thumb")
                         div.col-9.wordsVertCentered
                             h5 PECLERS IMMOBILIER
-            
-             
+                    //- each eachSellerinMyDbb in allSellersinMyDbb        
+                    .row.rowPicAndNomAgence
+                        ul.list-unstyled.mt-3.mb-4
+                            li #{formInfoNewHome.titreDescription} 
+                            li #{formInfoNewHome.cityDuBien} #{formInfoNewHome.postalCodeDuBien}  
+                            li Prix de Vente : #{formInfoNewHome.priceHome} €
+                            li a voir
+                        button.btn.btn-lg.btn-block.btn-outline-blueSite.yannFlex(type='button')
+                            i.fas.fa-phone-alt.wordsVertCentered 
+                            h4.wordsVertCentered Contactez Nous
+                        hr
+                        button.btn.btn-lg.btn-block.btn-outline-blueSite.yannFlex(type='button')
+                            i.far.fa-envelope.wordsVertCentered 
+                            h4.wordsVertCentered Envoyez un Message
+        .card-deck.mb-3.text-center.yannFlex
+            .card.mb-4.box-shadow
+                .card-header
+                    h4.my-0.font-weight-normal Free
+                .card-body
+                    h1.card-title.pricing-card-title
+                        | $0 
+                        small.text-muted / mo
+                    ul.list-unstyled.mt-3.mb-4
+                        li 10 users included
+                        li 2 GB of storage
+                        li Email support
+                        li Help center access
+                    button.btn.btn-lg.btn-block.btn-outline-primary(type='button') Sign up for free
+            .card.mb-4.box-shadow
+                .card-header
+                    h4.my-0.font-weight-normal Pro
+                .card-body
+                    h1.card-title.pricing-card-title
+                    | $15 
+                    small.text-muted / mo
+                    ul.list-unstyled.mt-3.mb-4
+                        li 20 users included
+                        li 10 GB of storage
+                        li Priority email support
+                        li Help center access
+                    button.btn.btn-lg.btn-block.btn-primary(type='button') Get started
+            .card.mb-4.box-shadow
+                .card-header
+                    h4.my-0.font-weight-normal Enterprise
+                .card-body
+                    h1.card-title.pricing-card-title
+                    | $29 
+                    small.text-muted / mo
+                    ul.list-unstyled.mt-3.mb-4
+                        li 30 users included
+                        li 15 GB of storage
+                        li Phone and email support
+                        li Help center access
+                    button.btn.btn-lg.btn-block.btn-primary(type='button') Contact us
+        
             

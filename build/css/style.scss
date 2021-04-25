@@ -87,5 +87,39 @@ body {
     justify-content: center;
 }
 
+.rmvUnderline {
+  text-decoration: none;
+}
+
+.hoverGrey:hover{
+  color: rgb(247, 133, 2);
+}
+
+.yannFlex {
+  display : flex;
+}
+
+.card{
+  width: 100%;
+}
+
+.btn-outline-blueSite{
+    $primary-color: #171a1f !important;
+    border-color: #171a1f !important; 
+    justify-content: center;
+}
+
+.btn-outline-blueSite:hover {
+    background-color: #171a1f !important;
+    color: rgb(223, 212, 154) !important;
+}
+
+.btn-outline-blueSite i{
+  margin: 10px;
+}
+
+.fa-envelope, .fa-phone-alt{
+  font-size: 2em;
+}
 
 
