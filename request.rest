@@ -1,0 +1,11 @@
+# app.get('/homeDescriptionDetails', (req, res) => {
+#     let Home = require('../src/controllers/Home.js');
+#     (new Home()).list(req, res);
+# });
+
+GET http://localhost:3700/logInfo
+
+# GET app.get('/homeDescriptionDetails', (req, res) => {
+#     let Home = require('../src/controllers/Home.js');
+#     (new Home()).list(req, res);
+# });

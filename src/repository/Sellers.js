@@ -30,8 +30,13 @@ const SellerSchema = mongoose.Schema({
     cityDuBien: { type: String },
     priceHome: { type: Number },
     annonceurStatus: { type: String, match: /^[1-2]{1}$/ },
+    titleDescriptionHouse: { type: String },
+    textDescriptionHouse: { type: String },
+    // date: { type: Date, default: Date.now },
+    date: { type: Date, $currentDate: Date.now },
+    $currentDate: { $type: "date" },
     // slug option unique: true pour avoir un slug unique pour chaque élement
-    slug: { type: String, slug: ['postalCode', 'city'], unique: true }
+    slug: { type: String, slug: ['postalCodeDuBien', 'city'], unique: true }
     // slug: 
 },
     // {
@@ -70,13 +75,13 @@ module.exports = class SellersClass {
     }
     // FONCTION DE RECUPERATION DE TOUTES LES DONNÉES DE CHAQUE SELLER DE BIENS
     // UTILISÉE DANS LE CONTROLLEURS HOMELIST
-    getallSellersinMyDbb() {
+    getallSellersinMyBdd() {
         return new Promise((resolve, reject) => {
             this.db.find({}, (err, allSellersinMyDbb) => {
                 // si pas d'erreur, email trouvé
                 if (!err) {
                     // console.log(allSellersinMyDbb)
-                    // console.log(`je suis ds Sellers ds getallSellersinMyDbb`)
+                    // console.log(`je suis ds Sellers ds getallSellersinMyBdd`)
                     resolve(allSellersinMyDbb);
                 }
                 resolve(false);
@@ -140,6 +145,23 @@ module.exports = class SellersClass {
         })
     }
 
+    count(filter = {}) {
+        return new Promise((resolve, reject) => {
+            mongoose.model('Sellers').count(filter, function (err, data) {
+                if (err) reject(err);
+                resolve(data);
+            });
+        });
+    }
+
+    findBy(where = {}, limit = 0, offset = 0, select = '*') {
+        return new Promise((resolve, reject) => {
+            this.db.find(filter).limit(limit).skip(skip).exec((err, data) => {
+                if (err) reject(err);
+                resolve(data);
+            });
+        });
+    }
 
 
 };

@@ -1,4 +1,5 @@
 extends ../layout_admin.pug
+
 block content
     .container 
         //- h1 list_homeView  
@@ -6,8 +7,9 @@ block content
         .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
             h1.h2 Liste des biens
             .btn-toolbar.mb-2.mb-md-0
-                a.btn.btn-small.btn-primary(href="/dashboardView/modifySellerView") Ajouter un bien
+                a.btn.btn-small.btn-primary(href="dashboardView/registerHomesView") Ajouter un bien
     hr
+    //- on affiche la pagination uniquement si il y a plus d'une page
     table.table
         thead
             tr
@@ -19,28 +21,29 @@ block content
                 th(scope="col-lg1") modifié
                 th(scope="col-lg1") delete
             tbody
-                each eachSellerinMyDbb in allSellersinMyDbb
+                each eachSellerinMyBdd in allSellersinMyBdd
                     tr
                         //- td.form-check 
-                        //- input.form-check-input(type="checkbox" allSellersinMyDbb="default" id="flexCheckDefault")
+                        //- input.form-check-input(type="checkbox" allSellersinMyBdd="default" id="flexCheckDefault")
                         td
                             label.v-checkbox
                             input(type="checkbox")
-                        td #{eachSellerinMyDbb.lastnameSeller}
-                        td #{eachSellerinMyDbb.firstName}
-                        td #{eachSellerinMyDbb.adress}
-                        td #{eachSellerinMyDbb.email}
+                        td #{eachSellerinMyBdd.lastnameSeller}
+                        td #{eachSellerinMyBdd.firstname}
+                        td #{eachSellerinMyBdd.adress}
+                        td #{eachSellerinMyBdd.email}
                         td
-                            a.btn.btn-float(href="/dashboardView/edit/"+eachSellerinMyDbb._id)
+                            a.btn.btn-float(href="/dashboardView/edit/"+eachSellerinMyBdd._id)
                                 em.fa.fa-pencil-alt#pencilIcon &nbsp;
                         td
-                            a.btn.btn-float(href="/dashboardView/deleteSeller/"+eachSellerinMyDbb._id)
+                            a.btn.btn-float(href="/dashboardView/deleteSeller/"+eachSellerinMyBdd._id)
                                 em.fa.fa-trash-alt#deleteIcon &nbsp;
                             //- form(action="/dashboardView/modify_seller" + (`/${eachSellerinMyDbb.id}`) method="post")
                             //- form(action="/dashboardView/modifySellerView" method="post")
                             //-     button.btn-danger 
                             //-         //- a.btn.btn-float
                             //-         em.fa.fa-trash-alt#deleteIcon &nbsp;
+        include ../paginate.pug
 
 
 

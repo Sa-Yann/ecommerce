@@ -23,7 +23,7 @@ html(lang="en")
                                 li.nav-item.active
                                     a.nav-link(href='/') Acceuil
                                 //- c est le session.user de request.session.user=userBdAllDatas de  determiner dans le log_in.js
-                                if session.user 
+                                if user.connected 
                                     li.nav-item.active
                                         a.nav-link(href='/log_out') Se déconnecter                       
                                 else
@@ -41,7 +41,7 @@ html(lang="en")
 
                                 
     block content
-    
+            //- on affiche la pagination uniquement si il y a plus d'une page
 
 
 

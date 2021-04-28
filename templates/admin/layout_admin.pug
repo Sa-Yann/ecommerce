@@ -9,27 +9,29 @@ html
     link(href='/css/admin/main.css' rel='stylesheet')
  
   body
-    header(class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow")
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/admin">#{websiteName}</a>
- 
-      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      div(class="d-none d-md-block d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start")
-        ul.navbar-nav.px-3
-          li.nav-item.dropdown
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://avatars.githubusercontent.com/u/49900328?s=60&v=4" alt="mdo" width="32" height="32" class="rounded-circle me-2">
-              //- on récupere les données de l'utilisateur localisés dans users.js 
-              <strong>#{session.user.firstname} #{session.user.lastname}</strong>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="position:absolute;" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="/config">Configuration</a></li>
-              <li><a class="dropdown-item" href="/profile">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/deconnexion">Se déconnecter</a></li>
-            </ul>
- 
+    header.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0.shadow
+      a.navbar-brand.col-md-3.col-lg-2.me-0.px-3(href='/admin') #{websiteName}
+      button.navbar-toggler.position-absolute.d-md-none.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#sidebarMenu' aria-controls='sidebarMenu' aria-expanded='false' aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+      div.d-none.d-md-block.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
+          ul.navbar-nav.px-3
+              li.nav-item.dropdown
+                  a#dropdownUser1.d-flex.align-items-center.text-white.text-decoration-none.dropdown-toggle(href='#' data-bs-toggle='dropdown' aria-expanded='false')
+                      img.rounded-circle.me-2(src='https://avatars.githubusercontent.com/u/49900328?s=60&v=4' alt='mdo' width='32' height='32')
+                      //- cas en utilisant session on récupere les données de l'utilisateur localisés dans users.js 
+                      //- <strong>#{session.user.firstname} #{session.user.lastname}</strong>
+                      //- cas en utilisant JWT 
+                      //- strong #{user.firstname} #{user.lastname}
+                      strong Saiyann
+                  ul.dropdown-menu.dropdown-menu-dark.text-small.shadow(style='position:absolute;' aria-labelledby='dropdownUser1')
+                      li
+                          a.dropdown-item(href='/config') Configuration
+                      li
+                          a.dropdown-item(href='/profile') Profile
+                      li
+                          hr.dropdown-divider
+                      li  
+                          a.dropdown-item(href='/deconnexion') Se déconnecter 
     .container-fluid
       .row
         nav#sidebarMenu.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse
@@ -47,7 +49,7 @@ html
                 em.fa.fa-address-book &nbsp;
                 | Contacts
             li.nav-item
-              a.nav-link(class=(route.indexOf('/dashboardView/user') != -1 ? 'active' : '' ), href='/dashboardView/user')
+              a.nav-link(class=(route.indexOf('/dashboardView/AllUsersandAdmin') != -1 ? 'active' : '' ), href='/dashboardView/AllUsersandAdmin')
                 em.fa.fa-user &nbsp;
                 | Collaborateurs
             li.nav-item

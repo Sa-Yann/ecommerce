@@ -1,0 +1,43 @@
+extends ../layout_admin.pug
+block content
+    .container 
+        //- h1 list_homeView  
+    block content
+        .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+            h1.h2 Liste des Utilisateurs : Clients et Admins
+            .btn-toolbar.mb-2.mb-md-0
+                a.btn.btn-small.btn-primary(href="dashboardView/registerHomesView") Ajouter un Utilisateurs
+    hr
+    //- on affiche la pagination uniquement si il y a plus d'une page
+    table.table
+        thead
+            tr
+                //- th.col-lg1 check 
+                th(scope="col-lg1") Nom 
+                th(scope="col-lg2") Prénom 
+                th(scope="col-lg3") email
+                th(scope="col-lg3") role
+                th(scope="col-lg1") modifié
+                th(scope="col-lg1") delete
+            tbody
+                each eachUserinMyBdd in allUsersinMyBdd
+                    //- console.log(allUsersinMyBdd)
+                    tr
+                        //- td.form-check 
+                        //- input.form-check-input(type="checkbox" allSellersinMyBdd="default" id="flexCheckDefault")
+                        td #{eachUserinMyBdd.lastname}
+                        td #{eachUserinMyBdd.firstname}
+                        td #{eachUserinMyBdd.email}
+                        td #{eachUserinMyBdd.role}
+                        td
+                            a.btn.btn-float(href="/dashboardView/editUser/"+eachUserinMyBdd._id)
+                                em.fa.fa-pencil-alt#pencilIcon &nbsp;
+                        td
+                            a.btn.btn-float(href="/dashboardView/deleteUser"+eachUserinMyBdd._id)
+                                em.fa.fa-trash-alt#deleteIcon &nbsp;
+                            
+
+
+
+
+

@@ -68,10 +68,11 @@ body {
 //     border-radius: 8px;
 //   }
 
-.form-container, .rowallpageDescriptionHouse {
+.form-container, .rowpageDescriptionHouse {
     background-color: $form-bckgrnd-color !important;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px 10px 20px 10px;
     color: rgb(39, 39, 39);
 }
 
@@ -107,19 +108,27 @@ body {
     $primary-color: #171a1f !important;
     border-color: #171a1f !important; 
     justify-content: center;
+    vertical-align: middle;
 }
 
-.btn-outline-blueSite:hover {
+.btn-outline-blueSite:hover, .textAreaHouseDescriprtion {
     background-color: #171a1f !important;
     color: rgb(223, 212, 154) !important;
 }
 
 .btn-outline-blueSite i{
-  margin: 10px;
+  margin: 0px 10px 0px 10px;
 }
 
 .fa-envelope, .fa-phone-alt{
   font-size: 2em;
 }
 
+.tn-outline-blueSite h1 {
+  display: inline-block;
+}
 
+* {
+  border-radius: 8px;
+  transition: 0,4s;
+}

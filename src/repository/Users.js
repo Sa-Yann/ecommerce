@@ -13,7 +13,8 @@ const UserSchema = mongoose.Schema({
     firstname: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
     lastname: { type: String, match: /^[a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž-]+$/i },
     phone: { type: String, match: /^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/ },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    role: { type: String }
 
 },
     // versionKey en mode false :permet de retirer le champs de numero de version du schéma "__v"
@@ -57,6 +58,22 @@ module.exports = class User {
                 // si pas d'erreur, email et password trouvé
                 if (!err && userQueLonChercheAllDatas !== null) {
                     resolve(userQueLonChercheAllDatas);
+                }
+                resolve(false);
+            })
+        })
+    }
+
+    // FONCTION DE RECUPERATION DE TOUTES LES DONNÉES DE CHAQUE SELLER DE BIENS
+    // UTILISÉE DANS LE CONTROLLEURS HOMELIST
+    getallUsersinMyBdd() {
+        return new Promise((resolve, reject) => {
+            this.db.find({}, (err, allUsersinMyBdd) => {
+                // si pas d'erreur, email trouvé
+                if (!err) {
+                    console.log(allUsersinMyBdd)
+                    // console.log(`je suis ds Sellers ds getallSellersinMyBdd`)
+                    resolve(allUsersinMyBdd);
                 }
                 resolve(false);
             })
