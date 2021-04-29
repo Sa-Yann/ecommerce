@@ -11,7 +11,7 @@ block content
         //- form(action='/dashboardView/registerHomesView' method="post") est devenu form(method="post") 
         form(method="post" autocomplete="on")            
             //- input(type="hidden" name="_id" value=formInfoNewHome._id)
-            input(type="text" name="token_csrf"  value=token_csrf)
+            input(type="text" name="csrf"  value=token_csrf)
             .row 
                 .col-6
                     h4 Adresse du Bien

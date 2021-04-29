@@ -5,7 +5,36 @@ const csrf = require('../src/controllers/csrf-mdlllware.js')
 
 module.exports = (app) => {
 
-    // let generateTk() = require('../src/controllers/csrf-mdlllware.js')
+    app.use('/', (req, res, next) => {
+        // Récupération du token dans le cookie
+        let jwt = require('jsonwebtoken');
+        let Cookies = require("cookies");
+        let token = new Cookies(req, res).get('le_cookie_jwt');
+        let config = require('./config.js')
+        // Si le cookie (access_token) existe
+        if (typeof token !== 'undefined' && token !== null) {
+            // sinon on vérifie le jwt
+            jwt.verify(token, config.appKey, (err, dataJwt) => {
+                // Erreur du JWT (n'est pas un JWT, a été modifié, est expiré)
+                if (err) return res.sendStatus(403);
+                res.locals.user = dataJwt;
+                res.locals.user.connected = true;
+                next();
+            });
+        } else {
+            next();
+        }
+    });
+
+    app.use('/dashboardView', (req, res, next) => {
+        if (typeof res.locals.user.roles != 'undefined' && res.locals.user.roles == 'admin') {
+            next();
+        }
+        else {
+            // si on n'est pas admin
+            return res.sendStatus(401);;
+        }
+    });
 
     app.get('/', (req, res) => {
         // res.send("Hello World");
@@ -31,34 +60,7 @@ module.exports = (app) => {
     // })
 
 
-    app.use('/', (req, res, next) => {
-        // Récupération du token dans le cookie
-        let jwt = require('jsonwebtoken');
-        let Cookies = require("cookies");
-        let token = new Cookies(req, res).get('le_cookie_jwt');
-        let config = require('./config.js')
-        // Si le cookie (access_token) n'existe pas
-        if (token == null) return res.sendStatus(401);
 
-        // sinon on vérifie le jwt
-        jwt.verify(token, config.appKey, (err, dataJwt) => {
-            // Erreur du JWT (n'est pas un JWT, a été modifié, est expiré)
-            if (err) return res.sendStatus(403);
-            res.locals.user = dataJwt;
-            res.locals.user.connected = true;
-            next();
-        });
-    });
-
-    app.use('/dashboardView', (req, res, next) => {
-        if (typeof res.locals.user.roles != 'undefined' && res.locals.user.roles == 'admin') {
-            next();
-        }
-        else {
-            // si on n'est pas admin
-            return res.sendStatus(401);;
-        }
-    })
 
     app.get('/admin/test-jwt', (req, res) => {
         // Récupération du token dans le cookie
@@ -87,12 +89,6 @@ module.exports = (app) => {
     });
 
 
-    // Pagination
-    app.get('/', (req, res) => {
-        // res.send("Hello World");
-        let Home = require('../src/controllers/Home.js');
-        (new Home()).list(req, res);
-    });
 
     app.get('/inscription', csrf.generateTk, (req, res) => {
         // res.send("Hello World");
@@ -192,11 +188,11 @@ module.exports = (app) => {
         (new controllerListdAllUsers()).printTableListUsersBck(req, res);
     })
 
-    // envoie vers la page d edit dun  utilisaterus
-    app.get('/dashboardView/updateUserBck/:id', (req, res) => {
-        // console.log(`j suis passé par la route app.get qui utilise  printFormAdminEdit du controlleurs registeurHomes`)
-        let controllerRegisterHomes = require('../src/controllers/RegisteredUsersBck.js');
-        (new controllerRegisterHomes()).printFormClientEditBck(req, res);
-        // () => { console.log('test route') };
-    });
+    // // envoie vers la page d edit dun  utilisaterus
+    // app.get('/dashboardView/updateUserBck/:id', (req, res) => {
+    //     // console.log(`j suis passé par la route app.get qui utilise  printFormAdminEdit du controlleurs registeurHomes`)
+    //     let controllerRegisterHomes = require('../src/controllers/RegisteredUsersBck.js');
+    //     (new controllerRegisterHomes()).printFormClientEditBck(req, res);
+    //     // () => { console.log('test route') };
+    // });
 };
