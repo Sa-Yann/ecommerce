@@ -6,7 +6,7 @@ block content
         .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
             h1.h2 Liste des Utilisateurs : Clients et Admins
             .btn-toolbar.mb-2.mb-md-0
-                a.btn.btn-small.btn-primary(href="dashboardView/registerHomesView") Ajouter un Utilisateurs
+                a.btn.btn-small.btn-primary(href="../../register/inscription") Ajouter un Utilisateurs
     hr
     //- on affiche la pagination uniquement si il y a plus d'une page
     table.table
@@ -30,10 +30,10 @@ block content
                         td #{eachUserinMyBdd.email}
                         td #{eachUserinMyBdd.role}
                         td
-                            a.btn.btn-float(href="/dashboardView/editUser/"+eachUserinMyBdd._id)
+                            a.btn.btn-float(href="/dashboardView/userEdit/"+eachUserinMyBdd._id)
                                 em.fa.fa-pencil-alt#pencilIcon &nbsp;
                         td
-                            a.btn.btn-float(href="/dashboardView/deleteUser"+eachUserinMyBdd._id)
+                            a.btn.btn-float(href="/dashboardView/deleteUser/"+eachUserinMyBdd._id)
                                 em.fa.fa-trash-alt#deleteIcon &nbsp;
                             
 

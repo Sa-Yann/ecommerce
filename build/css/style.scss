@@ -48,6 +48,13 @@ body {
     padding: 20px;
 }
 
+.col-centeredBck{
+    margin: 0 auto;
+    float: none;
+    background-color:blanchedalmond;
+    padding: 20px;
+}
+
 .colAnnonceCentered{
     background-color: $form-bckgrnd-color !important;
     color: rgb(39, 39, 39);
@@ -131,4 +138,8 @@ body {
 * {
   border-radius: 8px;
   transition: 0,4s;
+}
+
+.container-inscription {
+  background-color: white;
 }

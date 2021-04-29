@@ -1,0 +1,67 @@
+extends ../layout.pug
+block content
+    .container.container-inscription
+        h1.ivory.col-4.col-centered.text-align Modifiez les Données Utilisateur 
+        //- if error..permet d'afficher le message de mail déja enregistré ds le cas de repetition de la valeur email du form
+        if error 
+            .alert.alert-danger= error
+        .col-4.col-centered
+            form(method="post")
+                input(type="text" name="csrf"  value=token_csrf)
+                .input-group.mb-3
+                    span.input-group-prepend
+                        span.input-group-text.d-none.d-lg-block 
+                            i.fa.fa-envelope 
+                    input(type="email" class="form-control" placeholder="Email" name="email" value=formInscription.email)     
+
+                //- .input-group.mb-3
+                //-     .input-group-prepend
+                //-         .input-group-text.d-none.d-lg-block 
+                //-             i.fa.fa-lock
+                //-     input(type="password" class="form-control" placeholder="Mot de passe" name="password")
+
+                hr
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block 
+                            i.fa.fa-restroom
+                    select(class="form-control" placeholder="Civilité" name="civility")
+                        option(value="1") Monsieur
+                        option(value="2") Madame
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block
+                            i.fa.fa-user
+                    input(type="text" class="form-control" placeholder="Nom" name="lastname" value=formInscription.lastname)
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block 
+                            i.fa.fa-user
+                    input(type="text" class="form-control" placeholder="Prénom" name="firstname" value=formInscription.firstname)
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block
+                            i.fa.fa-phone
+                    input(type="phone" class="form-control" placeholder="Téléphone" name="phone" value=formInscription.phone) 
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        .input-group-text.d-none.d-lg-block
+                            i.fas.fa-user
+                    input(type="phone" class="form-control" placeholder="Admin ou User?" name="role" value=formInscription.role) 
+
+                //- .input-group.mb-3
+                //-     .input-group-prepend
+                //-         .input-group-text.d-none.d-lg-block 
+                //-             i.fa.fa-restroom
+                //-     select(class="form-control" placeholder="Civilité" name="civility")
+                //-         option(value="1") User
+                //-         option(value="2") Admin
+
+                .row
+                    .col-4.col-centered 
+                        button.btn.btn-secondary.mb3(type="submit") Sauvegarder les changements

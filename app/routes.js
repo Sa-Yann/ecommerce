@@ -95,6 +95,7 @@ module.exports = (app) => {
         let Inscription = require('../src/controllers/Inscription.js');
         (new Inscription()).print(req, res);
     });
+
     app.post('/inscription', csrf.controlTk, (req, res) => {
         // res.send("Hello World");
         let Inscription = require('../src/controllers/Inscription.js');
@@ -102,11 +103,13 @@ module.exports = (app) => {
         // les données collecter dans la données collectés via la function processForn()
         (new Inscription()).processForm(req, res);
     });
+
     app.get('/log_in', csrf.generateTk, (req, res) => {
         // res.send("Hello World");
         let Log_in = require('../src/controllers/Log_in.js');
         (new Log_in()).print(req, res);
     });
+
     app.post('/log_in', csrf.controlTk, (req, res) => {
         // res.send("Hello World");
         let Log_in = require('../src/controllers/Log_in.js');
@@ -114,6 +117,7 @@ module.exports = (app) => {
         // les données collecter dans la données collectés via la function processForn()
         (new Log_in()).processLog_in(req, res);
     });
+
     app.get('/log_out', (req, res) => {
         let Log_out = require('../src/controllers/Log_out.js');
         // (new Log_out()).print(req, res);
@@ -157,6 +161,28 @@ module.exports = (app) => {
         // les données collecter dans la données collectés via la function processForn()
         (new instenceDeAdminSellerClass()).processFormAdmin(req, res);
     });
+
+    // Show Inscription form in Bck to allow chages
+    app.get('/dashboardView/userEdit/:id', csrf.generateTk, (req, res) => {
+        // console.log(`j suis passé par la route app.get qui utilise  printFormUserEdit du controlleurs Inscription.js`)
+        let controllerInscriptionEdit = require('../src/controllers/Inscription.js');
+        (new controllerInscriptionEdit()).printFormUserEdit(req, res);
+        // () => { console.log('test route') };
+    });
+
+    app.post('/dashboardView/userEdit/:id', csrf.controlTk, (req, res) => {
+        // console.log(`j suis passé par la route app.get qui utilise  processUserFormChanges du controlleurs inscription`)
+        let controllerRegisterHomes = require('../src/controllers/Inscription.js');
+        (new controllerRegisterHomes()).processUserFormChanges(req, res);
+        // () => { console.log('test route') };
+    });
+
+    app.get('/dashboardView/deleteUser/:id', (req, res) => {
+        console.log(`j suis passé par la route app.get qui utilise  deleteUser du controlleurs Inscription.js`)
+        let deleteUserInstence = require('../src/controllers/Inscription.js');
+        (new deleteUserInstence()).deleteUser(req, res);
+    });
+
 
     app.get('/dashboardView/edit/:id', (req, res) => {
         // console.log(`j suis passé par la route app.get qui utilise  printFormAdminEdit du controlleurs registeurHomes`)

@@ -32,15 +32,15 @@ module.exports = class HomeListClass {
                 // console.log(request.params.id)
                 // console.log(`je checke la valeur d _id ds deleteForm ds Home_list controlleur`)
                 request.flash('notify', 'Le bien a été supprimé.');
-                response.redirect('/list_homeView');
+                response.redirect('./list_homeView');
             }, () => {
                 request.flash('error', 'La suppression du bien a échoué.');
-                response.redirect('/list_homeView');
+                response.redirect('./list_homeView');
             });
         }
         else {
             request.flash('error', 'Une erreur est survenue.');
-            response.redirect('/list_homeView');
+            response.redirect('./list_homeView');
         }
     };
 

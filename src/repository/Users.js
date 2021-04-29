@@ -79,4 +79,44 @@ module.exports = class User {
             })
         })
     }
+
+    getUserById(id) {
+        return new Promise((resolve, reject) => {
+            //  _id: id on cherche l'id quia pour valeur votre variable _id _id = id
+            this.db.findById(id, (err, thisUserinMyDbb) => {
+
+                // si pas d'erreur, seller trouvé
+                if (!err && thisUserinMyDbb !== null) {
+                    resolve(thisUserinMyDbb);
+                }
+                reject();
+            })
+        })
+    }
+
+    UpdateUser(id, entity) {
+        // findOneandUpdate() Updates a single document based on the filter and sort criteria.
+        return new Promise((resolve, reject) => {
+
+            //  _id: req.body._id on cherche l'id quia pour valeur votre variable _id _id = req.body._id
+            this.db.findOneAndUpdate({ _id: id }, entity, { new: true }, (err, thisUserinMyDbb) => {
+
+                // si pas d'erreur, seller trouvé
+                if (!err && thisUserinMyDbb !== null) {
+                    resolve(thisUserinMyDbb);
+                }
+                reject();
+            })
+        })
+    }
+
+    deleteOne(filter = {}) {
+        return new Promise((resolve, reject) => {
+            this.db.deleteOne(filter, function (err) {
+                console.log(err);
+                if (err) reject(err);
+                resolve();
+            });
+        });
+    };
 };

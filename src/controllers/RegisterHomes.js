@@ -80,21 +80,9 @@ module.exports = class AdminSeller {
 
     printFormAdminEdit(request, response, next) {
 
-
-
-        // getSellerFormText(request, response)
-        // if (typeof request.session.user !== 'undefined') {
         if (typeof request.params.id !== "undefined") {
             // La méthode then() renvoie un objet Promise.Elle peut prendre jusqu'à deux arguments 
             // qui sont deux fonctions callback à utiliser en cas de complétion ou d'échec de la Promise.
-            // const promise1 = new Promise((resolve, reject) => {
-            //     resolve('Success!');
-            // });
-
-            // promise1.then((value) => {
-            //     console.log(value);
-            //     // expected output: "Success!"
-            // });
             console.log('je suis ds le if qui gere ma methode getById qui est dans le if de printFormAdminEditMethode')
             let promise = (new repoSellers).getSellerById(request.params.id);
             promise.then((formContent) => {
